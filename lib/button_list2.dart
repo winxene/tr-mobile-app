@@ -61,7 +61,7 @@ class ButtonList2 extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     primary: Colors.green, //button color
                     onPrimary: Colors
-                        .white, //inside button color in this case Text widget
+                        .white, //inside button color, in this case Text widget
                     minimumSize: Size(120,
                         25), //increase the minimum size of the button (width, height)
                     shape: RoundedRectangleBorder(
@@ -80,7 +80,7 @@ class ButtonList2 extends StatelessWidget {
                     padding: EdgeInsets.all(15),
                     primary: Colors.green, //button color
                     onPrimary: Colors
-                        .white, //inside button color in this case icon widget
+                        .white, //inside button color, in this case icon widget
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
