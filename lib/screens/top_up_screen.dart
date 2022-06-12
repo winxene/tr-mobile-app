@@ -1,14 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-class SupportScreen extends StatelessWidget {
-  const SupportScreen({Key? key}) : super(key: key);
+class TopUpScreen extends StatelessWidget {
+  const TopUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Support',
+          'Top-Up',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
@@ -16,64 +18,77 @@ class SupportScreen extends StatelessWidget {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(
-            //use sized box to gain more flexibelity in arranging the elements
-            height: 100,
-          ),
           Container(
             child: Image.asset(
-              'assets/images/support_image.png',
+              'assets/images/top-up_image.png',
             ),
             width: 330,
           ),
-          SizedBox(
-            //use sized box to gain more flexibelity in arranging the elements
-            height: 40,
-          ),
-          Center(
-            child: Container(
-              width: 300,
-              child: Text(
-                'Please click the button below to be automatically redirected to call to our customer service',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 40),
+            child: Text(
+              'To Top-up, please transfer via virtual account in your bank account.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
               ),
             ),
           ),
           SizedBox(
-            //use sized box to gain more flexibelity in arranging the elements
-            height: 60,
+            height: 20,
           ),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: Icon(
-              Icons.call,
-              color: Colors.white,
-              size: 35,
-            ),
-            label: Text(
-              'Call Drinkify CS',
+          Container(
+            margin: EdgeInsets.only(right: 115),
+            child: Text(
+              'Your Virtual Account Number is:',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 14,
+                fontSize: 12,
+              ),
+            ),
+          ),
+          Container(
+            child: Text(
+              '0000-xxxx-2736-yyyy-8882-6633',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            //text button sample (in this case I use Trending button)
+            onPressed: () {},
+            child: Text(
+              'Copy Virtual Account Number',
+              style: TextStyle(
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Color.fromRGBO(0, 191, 166, 1),
               padding: EdgeInsets.only(
                 left: 70,
                 right: 70,
+                top: 10,
+                bottom: 10,
               ),
+              primary: Color.fromRGBO(0, 191, 166, 1), //button color
+              onPrimary:
+                  Colors.white, //inside button color, in this case Text widget
+              minimumSize: Size(120,
+                  25), //increase the minimum size of the button (width, height)
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          )
         ],
       ),
       bottomNavigationBar: Row(

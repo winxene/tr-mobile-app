@@ -20,9 +20,8 @@ class ButtonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: null,
+      backgroundColor: Colors.blue,
       appBar: AppBar(
-        backgroundColor: Colors.purple,
         title: Center(
           child: Text(
             'Button List',

@@ -10,9 +10,8 @@ class ButtonList2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: null,
+      backgroundColor: Colors.pink,
       appBar: AppBar(
-        backgroundColor: Colors.purple,
         title: Center(
           child: Text(
             'Button Icon',
@@ -32,7 +31,7 @@ class ButtonList2 extends StatelessWidget {
                       size: 60,
                     ),
                     radius: 30,
-                    backgroundColor: Color.fromRGBO(0, 191, 166, 1), 
+                    backgroundColor: Color.fromRGBO(0, 191, 166, 1),
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -48,6 +47,102 @@ class ButtonList2 extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                 ),
+              ],
+            ),
+          ),
+          //template for menu information
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  child: Image.asset(
+                    'assets/images/tea.png',
+                  ),
+                  height: 120,
+                  padding: EdgeInsets.only(left: 20),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 10),
+                  height: 125,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 160,         //limit the width of the text to make two line of text
+                        child: Text(
+                          "Drinkify's Classic Hot Tea",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Small cup (250 ml)',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Tea',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 11,
+                        ),
+                      ),
+                      Text(
+                        'Starts from',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 11,
+                        ),
+                      ),
+                      Text(
+                        'Rp 12,000',
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 191, 166, 1),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                 GestureDetector(
+                  onTap: () {
+                    print('Test');
+                  },
+                   child: Container(
+                    padding: EdgeInsets.only(right: 20),
+                     child: Column(
+                       children: [
+                        SizedBox(
+                          height: 80,),
+                         CircleAvatar(
+                            //next button
+                            child: Icon(
+                              Icons.navigate_next,
+                              size: 40,
+                            ),
+                            radius: 20,
+                            backgroundColor: Color.fromRGBO(0, 191, 166, 1),
+                            foregroundColor: Colors.white,
+                          ),
+                       ],
+                     ),
+                   ),
+                 ),
               ],
             ),
           ),
@@ -92,7 +187,7 @@ class ButtonList2 extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
