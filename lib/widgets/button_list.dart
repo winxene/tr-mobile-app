@@ -2,8 +2,8 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trmade/button_list2.dart';
-import 'package:trmade/my_icons_icons.dart';
+import '../widgets/button_list2.dart';
+import '../widgets/my_icons_icons.dart';
 
 
 /*Jika mau menggunakan icon dari MyIcons, harus meelakukan step ini:
