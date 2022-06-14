@@ -70,7 +70,7 @@ class SupportScreen extends StatelessWidget {
                 right: 70,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
           ),

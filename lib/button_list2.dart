@@ -76,7 +76,8 @@ class ButtonList2 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 160,         //limit the width of the text to make two line of text
+                        width:
+                            160, //limit the width of the text to make two line of text
                         child: Text(
                           "Drinkify's Classic Hot Tea",
                           style: TextStyle(
@@ -119,31 +120,50 @@ class ButtonList2 extends StatelessWidget {
                     ],
                   ),
                 ),
-                 GestureDetector(
+                GestureDetector(
                   onTap: () {
                     print('Test');
                   },
-                   child: Container(
+                  child: Container(
                     padding: EdgeInsets.only(right: 20),
-                     child: Column(
-                       children: [
+                    child: Column(
+                      children: [
                         SizedBox(
-                          height: 80,),
-                         CircleAvatar(
-                            //next button
-                            child: Icon(
-                              Icons.navigate_next,
-                              size: 40,
-                            ),
-                            radius: 20,
-                            backgroundColor: Color.fromRGBO(0, 191, 166, 1),
-                            foregroundColor: Colors.white,
+                          height: 80,
+                        ),
+                        CircleAvatar(
+                          //next button
+                          child: Icon(
+                            Icons.navigate_next,
+                            size: 40,
                           ),
-                       ],
-                     ),
-                   ),
-                 ),
+                          radius: 20,
+                          backgroundColor: Color.fromRGBO(0, 191, 166, 1),
+                          foregroundColor: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            width: 330,
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: 'Search',
+                icon: Icon(
+                  Icons.search,
+                  size: 30,
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -188,6 +208,7 @@ class ButtonList2 extends StatelessWidget {
               ],
             ),
           ),
+          
         ],
       ),
     );

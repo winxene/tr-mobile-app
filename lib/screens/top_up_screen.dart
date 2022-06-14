@@ -82,7 +82,7 @@ class TopUpScreen extends StatelessWidget {
               minimumSize: Size(120,
                   25), //increase the minimum size of the button (width, height)
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
           ),
