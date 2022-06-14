@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "963701895505",
+    "firebase_url": "https://drinkify-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "drinkify-firebase",
+    "storage_bucket": "drinkify-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963701895505:android:9946620d3c8c93921da370",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963701895505-vh9493cpk3om401o2728m8tg78gt026g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzVK8xI8Z4qUSvjurbeghZonxjm81sYcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963701895505-vh9493cpk3om401o2728m8tg78gt026g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963701895505:android:6b89f478c5359ce41da370",
+        "android_client_info": {
+          "package_name": "com.example.trmade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963701895505-vh9493cpk3om401o2728m8tg78gt026g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzVK8xI8Z4qUSvjurbeghZonxjm81sYcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963701895505-vh9493cpk3om401o2728m8tg78gt026g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
