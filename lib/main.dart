@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trmade/screens/payments_screen.dart';
 import 'package:trmade/screens/qr_code_scanner.dart';
 import 'package:trmade/widgets/button_list.dart';
 import 'package:trmade/screens/support_screen.dart';
@@ -12,14 +13,11 @@ import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
 import 'screens/sign_in_screen.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -43,6 +41,6 @@ class MyApp extends StatelessWidget {
 
         The botton navigation bar template is in the support_screen.dart
         */
-        home: SignInScreen(),
+        home: payments(),
       );
 }
