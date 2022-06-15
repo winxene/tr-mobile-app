@@ -14,18 +14,14 @@ class VersionInformationScreen extends StatelessWidget {
             },
             child: Container(
               padding: EdgeInsets.only(right: 320),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    child: Icon(
-                      Icons.navigate_before,
-                      size: 40,
-                    ),
-                    radius: 20,
-                    backgroundColor: Color.fromRGBO(0, 191, 166, 1),
-                    foregroundColor: Colors.white,
-                  ),
-                ],
+              child: CircleAvatar(
+                child: Icon(
+                  Icons.navigate_before,
+                  size: 40,
+                ),
+                radius: 20,
+                backgroundColor: Color.fromRGBO(0, 191, 166, 1),
+                foregroundColor: Colors.white,
               ),
             ),
           ),
