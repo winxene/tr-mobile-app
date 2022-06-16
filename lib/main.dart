@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trmade/screens/home_screen.dart';
 import 'package:trmade/screens/qr_code_scanner.dart';
 import 'package:trmade/widgets/button_list.dart';
 import 'package:trmade/screens/support_screen.dart';
@@ -11,6 +12,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
 import 'screens/sign_in_screen.dart';
+import 'screens/sign_up_screen.dart';
 
 
 
@@ -43,6 +45,6 @@ class MyApp extends StatelessWidget {
 
         The botton navigation bar template is in the support_screen.dart
         */
-        home: SignInScreen(),
+        home: HomeScreen(),
       );
 }
