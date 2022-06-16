@@ -74,6 +74,8 @@ flutter:
      - assets/images/drinkify_logo.png
      - assets/images/bottle_and_fresh.png
      - assets/images/lemon_soda.png
+     - assets/images/payments_image.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

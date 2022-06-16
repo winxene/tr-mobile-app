@@ -74,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Image.asset(
                 'assets/images/bottle_and_fresh.png',
               ),
-              width: 200,
+              width: 150,
             ),
             SizedBox(height: 20),
             Padding(
