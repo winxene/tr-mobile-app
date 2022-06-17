@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/home_screen.dart';
+import 'package:trmade/screens/sign_up_screen.dart';
+import 'package:trmade/screens/welcome_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
+  static const routeName = '/sign_in';
 
   /*
   Functionability
@@ -9,7 +13,7 @@ class SignInScreen extends StatefulWidget {
   - There is a button to hide and unhide password text.
   - Password text require to be at least 8 characters (if not the error text will appear).
   - all of the inputted text will be displayed in terminal after pressing the sign in button.
-  */ 
+  */
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -36,10 +40,12 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              print('Test');
+              Navigator.of(context).pushNamed(WelcomeScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.only(right: 320),
@@ -128,6 +134,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     passwordError = "Password must be at least 8 characters";
                   else
                     passwordError = "";
+
+                  if (passwordController.text.length >= 8)
+                    Navigator.of(context).pushNamed(HomeScreen.routeName);
                 });
               },
               child: Text('Sign in'),
@@ -156,9 +165,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   width: 5,
                 ),
-                TextButton(onPressed: () {
-                  print('Test');
-                },
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(SignUpScreen.routeName);
+                  },
                   child: Text(
                     'Go Create One!',
                     style: TextStyle(

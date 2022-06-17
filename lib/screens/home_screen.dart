@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/profile_screen.dart';
+import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/screens/support_screen.dart';
+import 'package:trmade/screens/top_up_screen.dart';
+import 'package:trmade/screens/version_information_screen.dart';
 import '../widgets/my_icons_icons.dart';
+import '../providers/account_information.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+  static const routeName = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,11 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                child: Image.asset(
-                  'assets/images/drinkify_logo.png',
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(VersionInformationScreen.routeName);
+                },
+                child: Container(
+                  child: Image.asset(
+                    'assets/images/drinkify_logo.png',
+                  ),
+                  width: 120,
                 ),
-                width: 120,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -125,6 +138,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {},
                     child: Text(
                       'Reccomended',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      primary: Color.fromRGBO(0, 191, 166, 1),
+                      onPrimary: Colors.white,
+                      minimumSize: Size(120,
+                          25), //increase the minimum size of the button (width, height)
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Brand new',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -343,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(right: 250.0),
               child: Text(
@@ -355,69 +390,126 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(
-                    MyIcons.credit_card_payment_svgrepo_com,
-                    size: 35,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
-                    primary: Color.fromRGBO(0, 191, 166, 1),
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(TopUpScreen.routeName);
+                      },
+                      child: Icon(
+                        MyIcons.credit_card_payment_svgrepo_com,
+                        size: 30,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(15),
+                        primary: Color.fromRGBO(0, 191, 166, 1),
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Top-Up',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(
-                    MyIcons.pencil_writing_on_paper_svgrepo_com,
-                    size: 35,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
-                    primary: Color.fromRGBO(0, 191, 166, 1),
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Icon(
+                        MyIcons.pencil_writing_on_paper_svgrepo_com,
+                        size: 30,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(15),
+                        primary: Color.fromRGBO(0, 191, 166, 1),
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 5),
+                    Text(
+                      'History',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.favorite,
-                    size: 35,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
-                    primary: Color.fromRGBO(0, 191, 166, 1),
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.favorite,
+                        size: 30,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(15),
+                        primary: Color.fromRGBO(0, 191, 166, 1),
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Favorite',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.headset_mic_rounded,
-                    size: 35,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
-                    primary: Color.fromRGBO(0, 191, 166, 1),
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(SupportScreen.routeName);
+                      },
+                      child: Icon(
+                        Icons.headset_mic_rounded,
+                        size: 30,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(15),
+                        primary: Color.fromRGBO(0, 191, 166, 1),
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Support',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -439,7 +531,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
             ),
           ),
           Padding(
@@ -465,7 +559,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+              },
             ),
           ),
           Padding(
@@ -478,7 +574,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(ProfileScreen.routeName);
+              },
             ),
           ),
         ],
