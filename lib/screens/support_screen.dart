@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/profile_screen.dart';
+import 'package:trmade/screens/qr_code_scanner.dart';
+
+import 'home_screen.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({Key? key}) : super(key: key);
+  static const routeName = '/support';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         title: Text(
           'Support',
           style: TextStyle(
@@ -91,7 +98,9 @@ class SupportScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
             ),
           ),
           Padding(
@@ -117,7 +126,9 @@ class SupportScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+              },
             ),
           ),
           Padding(
@@ -130,7 +141,9 @@ class SupportScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(ProfileScreen.routeName);
+              },
             ),
           ),
         ],

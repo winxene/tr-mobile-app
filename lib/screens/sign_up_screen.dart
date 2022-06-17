@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/sign_in_screen.dart';
+import 'package:trmade/screens/welcome_screen.dart';
+
+import 'home_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+  static const routeName = '/sign_up';
 
   /*
   Functionability
@@ -45,10 +50,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              print('Test');
+              Navigator.of(context).pushNamed(WelcomeScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.only(right: 320),
@@ -179,6 +186,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     passwordConfError = "Password confirmation does not match";
                   else
                     passwordConfError = "";
+
+                  if (passwordController.text.length >= 8 && passwordConfController.text == passwordController.text)
+                    Navigator.of(context).pushNamed(HomeScreen.routeName);
+
                 });
               },
               child: Text('Sign up'),
@@ -208,7 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    print('Test');
+                    Navigator.of(context).pushNamed(SignInScreen.routeName);
                   },
                   child: Text(
                     'Go Login!',

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'home_screen.dart';
+
 class VersionInformationScreen extends StatelessWidget {
   const VersionInformationScreen({Key? key}) : super(key: key);
+  static const routeName = '/version_information';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              print('Test');
+              Navigator.of(context).pushNamed(HomeScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.only(right: 320),

@@ -1,14 +1,21 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/profile_screen.dart';
+import 'package:trmade/screens/qr_code_scanner.dart';
+
+import 'home_screen.dart';
 
 class TopUpScreen extends StatelessWidget {
   const TopUpScreen({Key? key}) : super(key: key);
+  static const routeName = '/top_up';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         title: Text(
           'Top-Up',
           style: TextStyle(
@@ -106,7 +113,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
             ),
           ),
           Padding(
@@ -132,7 +141,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+              },
             ),
           ),
           Padding(
@@ -145,7 +156,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(ProfileScreen.routeName);
+              },
             ),
           ),
         ],
