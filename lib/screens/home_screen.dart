@@ -5,6 +5,7 @@ import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/top_up_screen.dart';
 import 'package:trmade/screens/version_information_screen.dart';
 import '../widgets/my_icons_icons.dart';
+import '../providers/account_information.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
