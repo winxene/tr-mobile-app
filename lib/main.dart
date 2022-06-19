@@ -16,6 +16,7 @@ import 'screens/qr_code_scanner_screen.dart';
 import '../screens/support_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/version_information_screen.dart';
+import 'package:trmade/screens/buying_option_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           QRCodeScannerDisplay.routeName: (context) => QRCodeScannerDisplay(),
           SupportScreen.routeName: (context) => const SupportScreen(),
           VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
+          BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),
         }
       );
 }

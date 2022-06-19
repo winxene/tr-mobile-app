@@ -4,15 +4,38 @@ import 'package:trmade/screens/home_screen.dart';
 
 import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/sign_up_screen.dart';
+import 'package:trmade/widgets/account_text_button.dart';
+import 'package:trmade/widgets/icon_placement.dart';
+import 'package:trmade/widgets/rounded_buttons/icon_rounded_big_button.dart';
 import '../net/google_sign_in.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../widgets/rounded_buttons/rounded_big_button.dart';
 
 ContinueWithGoogle continueWithGoogle = ContinueWithGoogle();
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
   static const routeName = '/welcome';
+
+  void _goToSignInPage(BuildContext context){
+    Navigator.of(context).pushNamed(SignInScreen.routeName);
+  }
+
+  void _continueWithGoogle(BuildContext context) {
+    continueWithGoogle.google();
+    if(FirebaseAuth.instance.currentUser!=null){
+      Navigator.pushNamed(context, HomeScreen.routeName);
+    }
+  }
+  void _continueWithApple(BuildContext context){
+    //later will be replaced by the continue with apple button
+    continueWithGoogle.google();
+    if(FirebaseAuth.instance.currentUser!=null){
+      Navigator.pushNamed(context, HomeScreen.routeName);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +47,16 @@ class WelcomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 100),
-            Container(
-              child: Image.asset(
-                'assets/images/bottle_and_fresh.png',
-              ),
-              width: 330,
-            ),
-            SizedBox(height: 20),
-            Padding(
+            // SizedBox(height: 100),
+            // Container(
+            //   child: Image.asset(
+            //     'assets/images/bottle_and_fresh.png',
+            //   ),
+            //   width: 330,
+            // ),
+            IconPlacement(pictureLocation: 'assets/images/bottle_and_fresh.png'),
+            // SizedBox(height: 20),
+            const Padding(
               padding: const EdgeInsets.only(
                 right: 160.0,
               ),
@@ -45,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: const EdgeInsets.only(
                 right: 160.0,
               ),
@@ -57,25 +81,14 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(SignInScreen.routeName);
-              },
-              child: Text('Sign in'),
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(0, 191, 166, 1),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 128,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+            const SizedBox(height: 20),
+            RoundedBigButton(
+              text: 'Sign In',
+              context: context,
+              function: _goToSignInPage,
             ),
             SizedBox(height: 8),
-            Text(
+            const Text(
               'or',
               style: TextStyle(
                 color: Colors.white,
@@ -83,90 +96,55 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () {
-                continueWithGoogle.google();
-                if(FirebaseAuth.instance.currentUser!=null)
-                  Navigator.of(context).pushNamed(HomeScreen.routeName);
-              },
-              icon: Icon(
-                FontAwesomeIcons.google,
-                color: Colors.black,
-                size: 25,
-              ),
-              label: Text(
-                'Continue with Google',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 72,
-                  vertical: 9,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+            IconRoundedBigButton(
+              label: 'Continue with Google', 
+              context: context, 
+              icon: FontAwesomeIcons.google,
+              isWhite: true, 
+              function: _continueWithGoogle,
             ),
             SizedBox(height: 10),
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: Icon(
-                FontAwesomeIcons.apple,
-                color: Colors.black,
-                size: 25,
-              ),
-              label: Text(
-                'Continue with Apple',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 75,
-                  vertical: 9,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+            IconRoundedBigButton(
+              label: 'Continue with Apple', 
+              context: context, 
+              icon: FontAwesomeIcons.apple,
+              isWhite: true, 
+              function: _continueWithApple,
             ),
             SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Don’t have account?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(SignUpScreen.routeName);
-                  },
-                  child: Text(
-                    'Go Create One!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+            AccountTextButton(
+              text: 'Don’t have account?', 
+              clickText: 'Go Create One!', 
+              routeName: SignUpScreen.routeName,
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       'Don’t have account?',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontSize: 12,
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 5,
+            //     ),
+            //     TextButton(
+            //       onPressed: () {
+            //         Navigator.of(context).pushNamed(SignUpScreen.routeName);
+            //       },
+            //       child: Text(
+            //         'Go Create One!',
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontSize: 12,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

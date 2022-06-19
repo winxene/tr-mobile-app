@@ -12,8 +12,8 @@ class DispenserFirebase {
     });
   }
   void dispenserLogic(String token){
-    DatabaseReference dispenserToken =databaseDispenserReference.child("dispenserData").child(token);
-    dispenserToken.once();
+    DatabaseReference dispenserToken =databaseDispenserReference.child("dispenserData").child("token");
+    dispenserToken.get();
     if(dispenserToken.key == token ){
         updateDispenserStatus();
     }
