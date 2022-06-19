@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/buying_option_screen.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/sign_in_screen.dart';
@@ -10,6 +11,7 @@ import '../screens/qr_code_scanner_screen.dart';
 import '../screens/support_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/version_information_screen.dart';
+import '../screens/buying_option_screen.dart';
 
 Map routes = <String, Function(BuildContext)> {
   HomeScreen.routeName: (context) => const HomeScreen(),
@@ -22,5 +24,6 @@ Map routes = <String, Function(BuildContext)> {
   QRCodeScannerDisplay.routeName: (context) => QRCodeScannerDisplay(),
   SupportScreen.routeName: (context) => const SupportScreen(),
   VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
+  BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),
 };
 
