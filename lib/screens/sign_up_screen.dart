@@ -5,26 +5,19 @@ import 'package:trmade/widgets/account_text_button.dart';
 
 import 'home_screen.dart';
 
+import '../services/auth_service.dart';
+import 'package:provider/provider.dart';
+
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
   static const routeName = '/sign_up';
-
-  /*
-  Functionability
-  - When there is a text in the email or username textfield the clear button will appear (press to clear the text).
-  - There is a button to hide and unhide password or password confirmation text.
-  - Password text require to be at least 8 characters (if not the error text will appear).
-  - Password confirmation text require to be the same as the password (if not the error text will appear).
-  - all of the inputted text will be displayed in terminal after pressing the sign up button.
-  */
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final usernameController =
-      TextEditingController(); //using TextEditingController as the usernameController to utilize TextEditingCOntroller's functions such as clear()
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final passwordConfController = TextEditingController();
@@ -34,17 +27,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isPasswordConfInvisible = true;
 
   @override
-  void initState() {
-    super.initState();
-
-    usernameController.addListener(() => setState(() {
-          //to refresh the state of the widget in the username (in this case clear icon when there is a text in the textfield)
-          //
-        }));
-    emailController.addListener(() => setState(() {
-          //to refresh the state of the widget in the email (in this case clear icon when there is a text in the textfield)
-          //
-        }));
+  void signUpUser(){
+    context.read<AuthService>().signUpWithEmail(userEmail: 
+    emailController.text, 
+    userPassword: passwordController.text, 
+    context: context);
+    Navigator.of(context).pushNamed(WelcomeScreen.routeName);
   }
 
   @override
@@ -122,24 +110,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 right: 250.0,
               ),
               child: Text(
-                'Username',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 5),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
-                child: buildUsername()),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 250.0,
-              ),
-              child: Text(
                 'Password',
                 style: TextStyle(
                   color: Colors.white,
@@ -172,25 +142,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 5),
             ElevatedButton(
               onPressed: () {
-                print('Email: ${emailController.text}');
-                print('Username: ${usernameController.text}');
-                print('Password: ${passwordController.text}');
-                print('Password Confirmation: ${passwordConfController.text}');
+                // print('Email: ${emailController.text}');
+                // print('Password: ${passwordController.text}');
+                // print('Password Confirmation: ${passwordConfController.text}');
                 setState(() {
                   //check if the password value meet the requirement which is at least 8 characters long
-                  if (passwordController.text.length < 8)
-                    passwordError = "Password must be at least 8 characters";
-                  else
+                  if (passwordController.text.length < 8){
+                      passwordError = "Password must be at least 8 characters";
+                    }
+                  else{
                     passwordError = "";
-
-                  if (passwordConfController.text != passwordController.text)
+                  }
+                  if (passwordConfController.text != passwordController.text){
                     passwordConfError = "Password confirmation does not match";
-                  else
+                  }
+                  else{
                     passwordConfError = "";
-
-                  if (passwordController.text.length >= 8 && passwordConfController.text == passwordController.text)
-                    Navigator.of(context).pushNamed(HomeScreen.routeName);
-
+                  }
+                  if (passwordController.text.length >= 8 && passwordConfController.text == passwordController.text){
+                    signUpUser();
+                  }
                 });
               },
               child: Text('Sign up'),
@@ -210,34 +181,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               clickText: 'Go Login!', 
               routeName: SignInScreen.routeName
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Text(
-            //       'Have Account?',
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //         fontSize: 12,
-            //       ),
-            //     ),
-            //     SizedBox(
-            //       width: 10,
-            //     ),
-            //     TextButton(
-            //       onPressed: () {
-            //         Navigator.of(context).pushNamed(SignInScreen.routeName);
-            //       },
-            //       child: Text(
-            //         'Go Login!',
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           fontSize: 12,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       ),
@@ -270,29 +213,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         keyboardType: TextInputType.emailAddress,
       );
 
-  Widget buildUsername() => TextField(
-        style: TextStyle(
-          fontSize: 15,
-        ),
-        controller: usernameController,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
-          filled: true,
-          fillColor: Colors.white,
-          suffixIcon: usernameController.text.isEmpty
-              ? Container(
-                  width: 0,
-                )
-              : IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () => usernameController
-                      .clear(), //to clear any text in the username textfield
-                ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-      );
+  
 
   Widget buildPassword() => TextField(
         style: TextStyle(

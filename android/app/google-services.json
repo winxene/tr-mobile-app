@@ -51,6 +51,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "963701895505-3rr8sdrk5u0k9pm491rnut0ifjm1ohos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trmade",
+            "certificate_hash": "3fb7497040fafdbd1d070c25494c19627363e66a"
+          }
+        },
+        {
           "client_id": "963701895505-vh9493cpk3om401o2728m8tg78gt026g.apps.googleusercontent.com",
           "client_type": 3
         }
