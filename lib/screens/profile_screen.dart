@@ -7,8 +7,7 @@ import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
 import '../services/auth_service.dart';
 import 'home_screen.dart';
-
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -21,6 +20,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:
@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.black,
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/images/lemon_soda.png'),
+                      image: NetworkImage(user.photoURL!),
                     ),
                   ),
                 ),
@@ -63,9 +63,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Darian',
+                        user.displayName!,
                         style: TextStyle(
-                          fontSize: 27,
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        user.email!,
+                        style: TextStyle(
+                          fontSize: 17,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
