@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../components/screen_specs.dart';
+import '../../components/screen_specs.dart';
 
 class RoundedBigButton extends StatelessWidget {
   final String text;
   final BuildContext context;
-  final Function onPressed;
-  
+  final function;
+
   RoundedBigButton({
     required this.text,
     required this.context,
-    required this.onPressed,});
+    required this.function,
+    });
 
   @override
   Widget build(BuildContext context) {
-    const buttonMargin= EdgeInsets.symmetric(vertical: 10);
     return Container(
-      margin: buttonMargin,
       width: ScreenSpecs.screenWidth(context) * 0.8, //to make the button fit the screen
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(30), //to make the button round
+        borderRadius: BorderRadius.circular(20), //to make the button round
         child: newElevatedButton(), //to create the button
       ),
     );
@@ -28,13 +27,24 @@ class RoundedBigButton extends StatelessWidget {
   Widget newElevatedButton()=> ElevatedButton(
     child: Text(
       text,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.bold
+        color: Colors.white,
       ),
     ),
     style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),),
-    onPressed: ()=> onPressed,
+      primary: Color.fromRGBO(0, 191, 166, 1),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 128,
+        vertical: 10,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
+    
+    onPressed: (){
+      function;
+    },
   );  
 }

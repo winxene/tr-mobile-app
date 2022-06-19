@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trmade/screens/home_screen.dart';
 import 'package:trmade/screens/sign_up_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/widgets/icon_placement.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -66,14 +67,8 @@ class _SignInScreenState extends State<SignInScreen> {
         //to make the screen scrollable when the keyboard is open (there is not enough space to display the textfield)
         child: Column(
           children: [
-            SizedBox(height: 100),
-            Container(
-              child: Image.asset(
-                'assets/images/bottle_and_fresh.png',
-              ),
-              width: 330,
-            ),
-            SizedBox(height: 20),
+            IconPlacement(pictureLocation: 'assets/images/bottle_and_fresh.png'),
+            // SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(
                 right: 220.0,
@@ -195,7 +190,7 @@ class _SignInScreenState extends State<SignInScreen> {
           contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
           filled: true,
           fillColor: Colors.white,
-          hintText: 'name@example.com',
+          hintText: 'darian',
           suffixIcon: usernameController.text.isEmpty
               ? Container(
                   width: 0,

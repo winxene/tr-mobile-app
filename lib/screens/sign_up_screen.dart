@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/widgets/account_text_button.dart';
 
 import 'home_screen.dart';
 
@@ -204,34 +205,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Have Account?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(SignInScreen.routeName);
-                  },
-                  child: Text(
-                    'Go Login!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+            AccountTextButton(
+              text: 'Have Account?', 
+              clickText: 'Go Login!', 
+              routeName: SignInScreen.routeName
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       'Have Account?',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontSize: 12,
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 10,
+            //     ),
+            //     TextButton(
+            //       onPressed: () {
+            //         Navigator.of(context).pushNamed(SignInScreen.routeName);
+            //       },
+            //       child: Text(
+            //         'Go Login!',
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontSize: 12,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

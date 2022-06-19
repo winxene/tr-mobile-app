@@ -1,6 +1,7 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trmade/screens/home_screen.dart';
+
 class GoogleAuth{
   final _googleSignIn = GoogleSignIn();
 
@@ -24,9 +25,6 @@ class GoogleAuth{
 }
 
 class ContinueWithGoogle extends GoogleAuth{
-
-  
-  
   google()async{
     await super.signInWithGoogle();
   }
