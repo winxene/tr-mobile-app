@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trmade/screens/home_screen.dart';
+
 import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/sign_up_screen.dart';
+import '../net/google_sign_in.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+ContinueWithGoogle continueWithGoogle = ContinueWithGoogle();
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -77,7 +84,11 @@ class WelcomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 8),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                continueWithGoogle.google();
+                if(FirebaseAuth.instance.currentUser!=null)
+                  Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
               icon: Icon(
                 FontAwesomeIcons.google,
                 color: Colors.black,
