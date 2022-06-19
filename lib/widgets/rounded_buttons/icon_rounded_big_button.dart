@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-
-import '../../components/screen_specs.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class IconRoundedBigButton extends StatelessWidget {
+class IconRoundedBigButton extends StatefulWidget {
+  const IconRoundedBigButton({
+  Key? key,
+  required this.label,
+  required this.context,
+  required this.icon,
+  required this.isWhite,
+  required this.function,
+  }) : super(key: key);
+
   final String label;
   final BuildContext context;
   final icon;
   final bool isWhite;
-  final Function function;
+  final VoidCallback function;
 
-  IconRoundedBigButton({
-    required this.label,
-    required this.context,
-    required this.icon,
-    required this.isWhite,
-    required this.function,
-    });
+  @override
+  State<IconRoundedBigButton> createState() => _IconRoundedBigButtonState();
+}
 
+class _IconRoundedBigButtonState extends State<IconRoundedBigButton> {
   bool _stringCalculation(String label) {
     if (label.length > 10) {
       return true;
@@ -30,40 +33,31 @@ class IconRoundedBigButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: ScreenSpecs.screenWidth(context) * 0.8, //to make the button fit the screen
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20), //to make the button round
-        child: newElevatedButton(), //to create the button
+    var function;
+    return ElevatedButton.icon(
+      icon: Icon(
+        widget.icon,
+        color: widget.isWhite ? Colors.black : Colors.white,
+        size: 25,
       ),
-    );
+      label: Text(
+        widget.label,
+        style: TextStyle(
+          fontSize: _stringCalculation(widget.label)? 12: 16,
+          color: widget.isWhite ? Colors.black : Colors.white,
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        primary: widget.isWhite ? Color.fromARGB(0, 255, 255, 255) :Color.fromRGBO(0, 191, 166, 1),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 75,
+          vertical: 9,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      onPressed: function,
+      );
   }
-  //to specify the button
-  Widget newElevatedButton()=> ElevatedButton.icon(
-    icon: Icon(
-      icon,
-      color: isWhite ? Colors.black : Colors.white,
-      size: 25,
-    ),
-    label: Text(
-      label,
-      style: TextStyle(
-        fontSize: _stringCalculation(label)? 12: 16,
-        color: isWhite ? Colors.black : Colors.white,
-      ),
-    ),
-    style: ElevatedButton.styleFrom(
-      primary: isWhite ? Colors.white :Color.fromRGBO(0, 191, 166, 1),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 75,
-        vertical: 9,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-    ),
-    onPressed: (){
-      function;
-    },
-  );  
 }

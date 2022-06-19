@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trmade/routes/routes.dart';
-import 'package:trmade/widgets/button_list.dart';
+// import 'package:trmade/routes/routes.dart';
+import '../services/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:trmade/services/auth_service.dart';
 // ...
 import '../screens/home_screen.dart';
 import '../screens/sign_in_screen.dart';
@@ -17,6 +19,7 @@ import '../screens/support_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/version_information_screen.dart';
 import 'package:trmade/screens/buying_option_screen.dart';
+import 'package:trmade/screens/buying_option2_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +29,18 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthService>().authState,
+          initialData: null,
+        ),
+      ],
+   child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.light(
             primary: Colors.black,
@@ -46,7 +60,7 @@ class MyApp extends StatelessWidget {
 
         The botton navigation bar template is in the support_screen.dart
         */
-        home: WelcomeScreen(),
+        home:  WelcomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
           WelcomeScreen.routeName: (context) => const WelcomeScreen(),
@@ -59,6 +73,9 @@ class MyApp extends StatelessWidget {
           SupportScreen.routeName: (context) => const SupportScreen(),
           VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
           BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),
+          BuyingOption2Screen.routeName: (context) => const BuyingOption2Screen(),
         }
-      );
+      ),
+    );
+  }
 }
