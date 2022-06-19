@@ -1,14 +1,22 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:trmade/screens/profile_screen.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
+
+import 'home_screen.dart';
 
 class TopUpScreen extends StatelessWidget {
-  const TopUpScreen({Key? key}) : super(key: key);
+  static const routeName = '/top_up';
+  String virtualAccountNumber = '0000-xxxx-2736-yyyy-8882-6633';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         title: Text(
           'Top-Up',
           style: TextStyle(
@@ -51,7 +59,7 @@ class TopUpScreen extends StatelessWidget {
           ),
           Container(
             child: Text(
-              '0000-xxxx-2736-yyyy-8882-6633',
+              '$virtualAccountNumber',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -61,7 +69,9 @@ class TopUpScreen extends StatelessWidget {
           ),
           ElevatedButton(
             //text button sample (in this case I use Trending button)
-            onPressed: () {},
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: "$virtualAccountNumber"));      //copy to clipboard
+            },
             child: Text(
               'Copy Virtual Account Number',
               style: TextStyle(
@@ -106,7 +116,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
             ),
           ),
           Padding(
@@ -132,7 +144,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
+              },
             ),
           ),
           Padding(
@@ -145,7 +159,9 @@ class TopUpScreen extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(ProfileScreen.routeName);
+              },
             ),
           ),
         ],

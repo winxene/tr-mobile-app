@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/sign_up_screen.dart';
+import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
-  static const routeName = '/sign_in';
+import 'home_screen.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
+  static const routeName = '/sign_up';
 
   /*
   Functionability
-  - When there is a text in the username textfield the clear button will appear (press to clear the text).
-  - There is a button to hide and unhide password text.
+  - When there is a text in the email or username textfield the clear button will appear (press to clear the text).
+  - There is a button to hide and unhide password or password confirmation text.
   - Password text require to be at least 8 characters (if not the error text will appear).
-  - all of the inputted text will be displayed in terminal after pressing the sign in button.
+  - Password confirmation text require to be the same as the password (if not the error text will appear).
+  - all of the inputted text will be displayed in terminal after pressing the sign up button.
   */
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final usernameController =
       TextEditingController(); //using TextEditingController as the usernameController to utilize TextEditingCOntroller's functions such as clear()
   final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordConfController = TextEditingController();
   String passwordError = '';
+  String passwordConfError = '';
   bool isPasswordInvisible = true;
+  bool isPasswordConfInvisible = true;
 
   @override
   void initState() {
@@ -32,6 +38,10 @@ class _SignInScreenState extends State<SignInScreen> {
 
     usernameController.addListener(() => setState(() {
           //to refresh the state of the widget in the username (in this case clear icon when there is a text in the textfield)
+          //
+        }));
+    emailController.addListener(() => setState(() {
+          //to refresh the state of the widget in the email (in this case clear icon when there is a text in the textfield)
           //
         }));
   }
@@ -66,12 +76,12 @@ class _SignInScreenState extends State<SignInScreen> {
         //to make the screen scrollable when the keyboard is open (there is not enough space to display the textfield)
         child: Column(
           children: [
-            SizedBox(height: 100),
+            SizedBox(height: 40),
             Container(
               child: Image.asset(
                 'assets/images/bottle_and_fresh.png',
               ),
-              width: 330,
+              width: 150,
             ),
             SizedBox(height: 20),
             Padding(
@@ -79,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 right: 220.0,
               ),
               child: Text(
-                'Sign in',
+                'Sign Up',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 36,
@@ -87,6 +97,24 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 250.0,
+              ),
+              child: Text(
+                'Email',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: buildEmail()),
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(
@@ -123,11 +151,30 @@ class _SignInScreenState extends State<SignInScreen> {
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: buildPassword()),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 163.0,
+              ),
+              child: Text(
+                'Password Confirmation',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: buildPasswordConf()),
             SizedBox(height: 5),
             ElevatedButton(
               onPressed: () {
+                print('Email: ${emailController.text}');
                 print('Username: ${usernameController.text}');
                 print('Password: ${passwordController.text}');
+                print('Password Confirmation: ${passwordConfController.text}');
                 setState(() {
                   //check if the password value meet the requirement which is at least 8 characters long
                   if (passwordController.text.length < 8)
@@ -135,11 +182,17 @@ class _SignInScreenState extends State<SignInScreen> {
                   else
                     passwordError = "";
 
-                  if (passwordController.text.length >= 8)
+                  if (passwordConfController.text != passwordController.text)
+                    passwordConfError = "Password confirmation does not match";
+                  else
+                    passwordConfError = "";
+
+                  if (passwordController.text.length >= 8 && passwordConfController.text == passwordController.text)
                     Navigator.of(context).pushNamed(HomeScreen.routeName);
+
                 });
               },
-              child: Text('Sign in'),
+              child: Text('Sign up'),
               style: ElevatedButton.styleFrom(
                 primary: Color.fromRGBO(0, 191, 166, 1),
                 padding: EdgeInsets.symmetric(
@@ -151,26 +204,25 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Don’t have account?',
+                  'Have Account?',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
                 ),
                 SizedBox(
-                  width: 5,
+                  width: 10,
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(SignUpScreen.routeName);
+                    Navigator.of(context).pushNamed(SignInScreen.routeName);
                   },
                   child: Text(
-                    'Go Create One!',
+                    'Go Login!',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -186,6 +238,32 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
+  Widget buildEmail() => TextField(
+        style: TextStyle(
+          fontSize: 15,
+        ),
+        controller: emailController,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'name@example.com',
+          suffixIcon: emailController.text.isEmpty
+              ? Container(
+                  width: 0,
+                )
+              : IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () => emailController
+                      .clear(), //to clear any text in the username textfield
+                ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        keyboardType: TextInputType.emailAddress,
+      );
+
   Widget buildUsername() => TextField(
         style: TextStyle(
           fontSize: 15,
@@ -195,7 +273,6 @@ class _SignInScreenState extends State<SignInScreen> {
           contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
           filled: true,
           fillColor: Colors.white,
-          hintText: 'name@example.com',
           suffixIcon: usernameController.text.isEmpty
               ? Container(
                   width: 0,
@@ -209,7 +286,6 @@ class _SignInScreenState extends State<SignInScreen> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        keyboardType: TextInputType.emailAddress,
       );
 
   Widget buildPassword() => TextField(
@@ -225,6 +301,7 @@ class _SignInScreenState extends State<SignInScreen> {
           errorText: passwordError,
           errorStyle: TextStyle(
             color: Colors.red,
+            fontSize: 12,
           ),
           suffixIcon: IconButton(
             onPressed: (() => setState(() {
@@ -239,5 +316,35 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
         obscureText: isPasswordInvisible,
+      );
+
+  Widget buildPasswordConf() => TextField(
+        style: TextStyle(
+          fontSize: 15,
+        ),
+        controller: passwordConfController,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Please confirm your password',
+          errorText: passwordConfError,
+          errorStyle: TextStyle(
+            color: Colors.red,
+            fontSize: 12,
+          ),
+          suffixIcon: IconButton(
+            onPressed: (() => setState(() {
+                  isPasswordConfInvisible = !isPasswordConfInvisible;
+                })),
+            icon: isPasswordConfInvisible
+                ? Icon(Icons.visibility)
+                : Icon(Icons.visibility_off),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        obscureText: isPasswordConfInvisible,
       );
 }

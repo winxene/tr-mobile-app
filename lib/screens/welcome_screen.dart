@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trmade/screens/home_screen.dart';
+
+import 'package:trmade/screens/sign_in_screen.dart';
+import 'package:trmade/screens/sign_up_screen.dart';
+import '../net/google_sign_in.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+ContinueWithGoogle continueWithGoogle = ContinueWithGoogle();
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
+  static const routeName = '/welcome';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
+      ),
       body: Center(
         child: Column(
           children: [
@@ -47,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                print('Test');
+                Navigator.of(context).pushNamed(SignInScreen.routeName);
               },
               child: Text('Sign in'),
               style: ElevatedButton.styleFrom(
@@ -71,7 +84,11 @@ class WelcomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 8),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                continueWithGoogle.google();
+                if(FirebaseAuth.instance.currentUser!=null)
+                  Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
               icon: Icon(
                 FontAwesomeIcons.google,
                 color: Colors.black,
@@ -135,12 +152,17 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(
                   width: 5,
                 ),
-                Text(
-                  'Go Create One!',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(SignUpScreen.routeName);
+                  },
+                  child: Text(
+                    'Go Create One!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],

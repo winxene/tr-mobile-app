@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/home_screen.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
 
-class payments extends StatelessWidget {
-  const payments({Key? key}) : super(key: key);
+class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({Key? key}) : super(key: key);
+  static const routeName = '/payment';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading:
+            false, // remove automatic back button when changing screen
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              print('Test');
+              Navigator.of(context).pushNamed(HomeScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.only(right: 320),
@@ -73,7 +78,9 @@ class payments extends StatelessWidget {
             height: 60,
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
+            },
             icon: Icon(
               Icons.qr_code_scanner_outlined,
               color: Colors.white,
