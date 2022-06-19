@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/buying_option2_screen.dart';
 import 'package:trmade/screens/buying_option_screen.dart';
 
 import '../screens/home_screen.dart';
@@ -25,5 +26,6 @@ Map routes = <String, Function(BuildContext)> {
   SupportScreen.routeName: (context) => const SupportScreen(),
   VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
   BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),
+  BuyingOption2Screen.routeName: (context) => const BuyingOption2Screen(),
 };
 

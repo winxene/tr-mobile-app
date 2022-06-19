@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trmade/screens/buying_option2_screen.dart';
 import 'package:trmade/screens/buying_option_screen.dart';
 import 'package:trmade/screens/profile_screen.dart';
 import 'package:trmade/screens/qr_code_scanner_screen.dart';
@@ -356,7 +357,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print('Test');
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new BuyingOption2Screen()));
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trmade/routes/routes.dart';
+import 'package:trmade/screens/buying_option2_screen.dart';
 import 'package:trmade/screens/buying_option_screen.dart';
 import 'package:trmade/widgets/button_list.dart';
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
 
         The botton navigation bar template is in the support_screen.dart
         */
-        home: BuyingOptionScreen(),
+        home: WelcomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
           WelcomeScreen.routeName: (context) => const WelcomeScreen(),
