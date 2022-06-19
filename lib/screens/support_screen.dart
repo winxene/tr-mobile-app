@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
 
 import 'home_screen.dart';
 
@@ -127,7 +127,7 @@ class SupportScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
               },
             ),
           ),

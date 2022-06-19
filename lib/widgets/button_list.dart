@@ -34,7 +34,7 @@ class ButtonList extends StatelessWidget {
       ),
       body: Container(
         child: GridView(
-          children: [
+          children: <Widget> [
             Icon(
               Icons.call,
               size: 50,
@@ -80,7 +80,6 @@ class ButtonList extends StatelessWidget {
               MyIcons.pencil_writing_on_paper_svgrepo_com,
               size: 50,
             ), //history icon 6
-
             Icon(
               Icons.credit_card,
               size: 50,

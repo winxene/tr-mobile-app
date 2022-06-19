@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -79,7 +79,7 @@ class PaymentScreen extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+              Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
             },
             icon: Icon(
               Icons.qr_code_scanner_outlined,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
 
@@ -298,7 +298,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
               },
             ),
           ),

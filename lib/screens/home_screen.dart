@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/screens/qr_code_scanner_screen.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/top_up_screen.dart';
 import 'package:trmade/screens/version_information_screen.dart';
 import '../widgets/my_icons_icons.dart';
-import '../providers/account_information.dart';
+import '../models/account_information.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -560,7 +560,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScanner.routeName);
+                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
               },
             ),
           ),

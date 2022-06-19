@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/payments_screen.dart';
-import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/screens/qr_code_scanner.dart';
+import 'package:trmade/routes/routes.dart';
 import 'package:trmade/widgets/button_list.dart';
-import 'package:trmade/screens/support_screen.dart';
-import 'package:trmade/screens/top_up_screen.dart';
-import 'package:trmade/screens/version_information_screen.dart';
+
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 // ...
-import 'package:trmade/screens/sign_in_screen.dart';
-import 'package:trmade/screens/welcome_screen.dart';
-import 'screens/sign_in_screen.dart';
-import 'screens/sign_up_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/sign_in_screen.dart';
+import '../screens/sign_up_screen.dart';
+import '../screens/profile_screen.dart';
+import '../screens/top_up_screen.dart';
+import '../screens/payment_screen.dart';
+import 'screens/qr_code_scanner_screen.dart';
+import '../screens/support_screen.dart';
+import '../screens/welcome_screen.dart';
+import '../screens/version_information_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,17 +47,16 @@ class MyApp extends StatelessWidget {
         */
         home: WelcomeScreen(),
         routes: {
-          HomeScreen.routeName: (context) => HomeScreen(),
-          WelcomeScreen.routeName: (context) => WelcomeScreen(),
-          SignInScreen.routeName: (context) => SignInScreen(),
-          SignUpScreen.routeName: (context) => SignUpScreen(),
-          ProfileScreen.routeName: (context) => ProfileScreen(),
-          TopUpScreen.routeName: (context) => TopUpScreen(),
-          PaymentScreen.routeName: (context) => PaymentScreen(),
-          QRCodeScanner.routeName: (context) => QRCodeScanner(),
-          SupportScreen.routeName: (context) => SupportScreen(),
-          VersionInformationScreen.routeName: (context) => VersionInformationScreen(),
-        },
-      
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+          SignInScreen.routeName: (context) => const SignInScreen(),
+          SignUpScreen.routeName: (context) => const SignUpScreen(),
+          ProfileScreen.routeName: (context) => const ProfileScreen(),
+          TopUpScreen.routeName: (context) =>  TopUpScreen(),
+          PaymentScreen.routeName: (context) => const PaymentScreen(),
+          QRCodeScannerDisplay.routeName: (context) => QRCodeScannerDisplay(),
+          SupportScreen.routeName: (context) => const SupportScreen(),
+          VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
+        }
       );
 }
