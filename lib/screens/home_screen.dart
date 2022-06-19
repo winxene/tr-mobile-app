@@ -254,7 +254,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed(BuyingOptionScreen.routeName);
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new BuyingOptionScreen()));
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
