@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/screens/qr_code_scanner_screen.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/top_up_screen.dart';
 import 'package:trmade/screens/version_information_screen.dart';
+import 'package:trmade/widgets/bottom_nav_bar.dart';
 import '../widgets/my_icons_icons.dart';
 import '../models/account_information.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'buying_option_screen.dart';
+import 'buying_option2_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:
@@ -65,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 15),
+            // SizedBox(height: 15),
             Padding(
-              padding: const EdgeInsets.only(right: 280.0),
+              padding: const EdgeInsets.only(right: 38.0),
               child: Text(
-                'Hello, Darian',
+                'Hello,' + user.displayName! +'!',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.white,
@@ -81,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 'Time to Rehydrate!',
                 style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -255,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print('Test');
+                      Navigator.of(context).pushNamed(BuyingOptionScreen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
@@ -354,7 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print('Test');
+                      Navigator.of(context).pushNamed(BuyingOption2Screen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
@@ -518,71 +524,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Row(
-        //bottom navigation bar template
-        mainAxisAlignment: MainAxisAlignment
-            .spaceEvenly, //make the 4 icon evently spaced in the bottom navigation bar
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.home,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.search,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.qr_code_scanner_outlined,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.circle,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(ProfileScreen.routeName);
-              },
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

@@ -14,7 +14,6 @@ import '../screens/sign_up_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/top_up_screen.dart';
 import '../screens/payment_screen.dart';
-import 'screens/qr_code_scanner_screen.dart';
 import '../screens/support_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/version_information_screen.dart';
@@ -69,7 +68,6 @@ class MyApp extends StatelessWidget {
           ProfileScreen.routeName: (context) => const ProfileScreen(),
           TopUpScreen.routeName: (context) =>  TopUpScreen(),
           PaymentScreen.routeName: (context) => const PaymentScreen(),
-          QRCodeScannerDisplay.routeName: (context) => QRCodeScannerDisplay(),
           SupportScreen.routeName: (context) => const SupportScreen(),
           VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
           BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),

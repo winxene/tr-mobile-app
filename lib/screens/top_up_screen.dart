@@ -3,9 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/screens/qr_code_scanner_screen.dart';
+import 'package:trmade/widgets/bottom_nav_bar.dart';
 
 import 'home_screen.dart';
+import 'package:trmade/components/snack_bar.dart';
 
 class TopUpScreen extends StatelessWidget {
   static const routeName = '/top_up';
@@ -71,6 +72,7 @@ class TopUpScreen extends StatelessWidget {
             //text button sample (in this case I use Trending button)
             onPressed: () {
               Clipboard.setData(ClipboardData(text: "$virtualAccountNumber"));      //copy to clipboard
+              showSnackBar(context, 'Copied to clipboard');
             },
             child: Text(
               'Copy Virtual Account Number',
@@ -101,71 +103,7 @@ class TopUpScreen extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: Row(
-        //bottom navigation bar template
-        mainAxisAlignment: MainAxisAlignment
-            .spaceEvenly, //make the 4 icon evently spaced in the bottom navigation bar
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.home,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.search,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.qr_code_scanner_outlined,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.circle,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(ProfileScreen.routeName);
-              },
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

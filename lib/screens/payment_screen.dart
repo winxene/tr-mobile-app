@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/qr_code_scanner_screen.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:trmade/services/firebase.dart';
+import 'package:flutter/services.dart';
+import '../components/snack_bar.dart';
 
-class PaymentScreen extends StatelessWidget {
+
+QRDispenserFirebase qrDispenserFirebase = QRDispenserFirebase();
+
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
   static const routeName = '/payment';
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+
+  String qrCodeResult = "";
+
+  Future<void> scanQRCode() async {
+    try {
+      final qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        true,
+        ScanMode.QR,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        this.qrCodeResult = qrCodeResult;
+        qrDispenserFirebase.dispenser(qrCodeResult);
+        showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
+        // Firebase.updateDispenserStatus();
+      });
+    } on PlatformException {
+      qrCodeResult = 'Failed to get platform version.';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +115,7 @@ class PaymentScreen extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
+              scanQRCode();
             },
             icon: Icon(
               Icons.qr_code_scanner_outlined,

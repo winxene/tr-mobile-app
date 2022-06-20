@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:trmade/services/auth_service.dart';
-import 'package:trmade/screens/qr_code_scanner_screen.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/widgets/bottom_nav_bar.dart';
 import '../services/auth_service.dart';
-import 'home_screen.dart';
-
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -21,6 +19,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:
@@ -53,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.black,
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/images/lemon_soda.png'),
+                      image: NetworkImage(user.photoURL!),
                     ),
                   ),
                 ),
@@ -63,9 +62,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Darian',
+                        user.displayName!,
                         style: TextStyle(
-                          fontSize: 27,
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        user.email!,
+                        style: TextStyle(
+                          fontSize: 17,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -259,71 +266,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: Row(
-        //bottom navigation bar template
-        mainAxisAlignment: MainAxisAlignment
-            .spaceEvenly, //make the 4 icon evently spaced in the bottom navigation bar
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.home,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.search,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.qr_code_scanner_outlined,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(QRCodeScannerDisplay.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 15,
-            ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
-            child: IconButton(
-              icon: Icon(
-                Icons.circle,
-                size: 40,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(ProfileScreen.routeName);
-              },
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_screen.dart';
+import 'payment_screen.dart';
 
 class BuyingOption2Screen extends StatefulWidget {
   const BuyingOption2Screen({Key? key}) : super(key: key);
@@ -331,7 +332,11 @@ class _BuyingOption2ScreenState extends State<BuyingOption2Screen> {
           ),
           ElevatedButton(
             //text button sample (in this case I use Trending button)
-            onPressed: () {},
+            onPressed: () {
+              if (value >= 1 && selectedSize != null) {
+                Navigator.of(context).pushNamed(PaymentScreen.routeName);
+              }
+            },
             child: Text(
               'Checkoout',
               style: TextStyle(
