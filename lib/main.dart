@@ -20,7 +20,7 @@ import '../screens/version_information_screen.dart';
 import 'package:trmade/screens/buying_option_screen.dart';
 import 'package:trmade/screens/buying_option2_screen.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -39,18 +39,18 @@ class MyApp extends StatelessWidget {
           initialData: null,
         ),
       ],
-   child: MaterialApp(
-        theme: ThemeData(
-          colorScheme: ColorScheme.light(
-            primary: Colors.black,
+      child: MaterialApp(
+          theme: ThemeData(
+            colorScheme: ColorScheme.light(
+              primary: Colors.black,
+            ),
+            scaffoldBackgroundColor: Colors.black,
+            textTheme: GoogleFonts.poppinsTextTheme(
+              Theme.of(context).textTheme,
+            ),
           ),
-          scaffoldBackgroundColor: Colors.black,
-          textTheme: GoogleFonts.poppinsTextTheme(
-            Theme.of(context).textTheme,
-          ),
-        ),
-        debugShowCheckedModeBanner: false,
-        /*
+          debugShowCheckedModeBanner: false,
+          /*
         IMPORTANT: 
         Changed the home to "ButtonList" to view the icon and button list.
         
@@ -59,21 +59,23 @@ class MyApp extends StatelessWidget {
 
         The botton navigation bar template is in the support_screen.dart
         */
-        home:  WelcomeScreen(),
-        routes: {
-          HomeScreen.routeName: (context) => const HomeScreen(),
-          WelcomeScreen.routeName: (context) => const WelcomeScreen(),
-          SignInScreen.routeName: (context) => const SignInScreen(),
-          SignUpScreen.routeName: (context) => const SignUpScreen(),
-          ProfileScreen.routeName: (context) => const ProfileScreen(),
-          TopUpScreen.routeName: (context) =>  TopUpScreen(),
-          PaymentScreen.routeName: (context) => const PaymentScreen(),
-          SupportScreen.routeName: (context) => const SupportScreen(),
-          VersionInformationScreen.routeName: (context) => const VersionInformationScreen(),
-          BuyingOptionScreen.routeName: (context) => const BuyingOptionScreen(),
-          BuyingOption2Screen.routeName: (context) => const BuyingOption2Screen(),
-        }
-      ),
+          home: WelcomeScreen(),
+          routes: {
+            HomeScreen.routeName: (context) => const HomeScreen(),
+            WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+            SignInScreen.routeName: (context) => const SignInScreen(),
+            SignUpScreen.routeName: (context) => const SignUpScreen(),
+            ProfileScreen.routeName: (context) => const ProfileScreen(),
+            TopUpScreen.routeName: (context) => TopUpScreen(),
+            PaymentScreen.routeName: (context) => const PaymentScreen(),
+            SupportScreen.routeName: (context) => const SupportScreen(),
+            VersionInformationScreen.routeName: (context) =>
+                const VersionInformationScreen(),
+            BuyingOptionScreen.routeName: (context) =>
+                const BuyingOptionScreen(),
+            BuyingOption2Screen.routeName: (context) =>
+                const BuyingOption2Screen(),
+          }),
     );
   }
 }

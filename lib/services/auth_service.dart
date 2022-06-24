@@ -9,7 +9,7 @@ import 'package:trmade/screens/welcome_screen.dart';
 
 import 'package:provider/provider.dart';
 
-class AuthService{
+class AuthService {
   final FirebaseAuth _auth;
   AuthService(this._auth);
 
@@ -17,29 +17,26 @@ class AuthService{
 
   Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
   //Email Sign up
-  Future<void>signUpWithEmail({
+  Future<void> signUpWithEmail({
     required String userEmail,
     required String userPassword,
     required BuildContext context,
-  })
-    async {
-      try{
-        await _auth.createUserWithEmailAndPassword(
-          email: userEmail,
-          password: userPassword,
-        );
-        //sending email verification
-        await sendEmailVerification(context);
-      }
-      on FirebaseAuthException catch(e){
-        showSnackBar(
-            context, e.message!
-          ); // Displaying the usual firebase error message
-        }
-      }
+  }) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: userEmail,
+        password: userPassword,
+      );
+      //sending email verification
+      await sendEmailVerification(context);
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(
+          context, e.message!); // Displaying the usual firebase error message
+    }
+  }
 
   //Email Login
-  Future<void>signInWithEmail({
+  Future<void> signInWithEmail({
     required String userEmail,
     required String userPassword,
     required BuildContext context,
@@ -68,6 +65,7 @@ class AuthService{
       showSnackBar(context, e.message!); // Display error message
     }
   }
+
   //Google Sign in
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
@@ -98,6 +96,7 @@ class AuthService{
       showSnackBar(context, e.message!); // Displaying the error message
     }
   }
+
   Future<void> signOut(BuildContext context) async {
     try {
       await _auth.signOut();

@@ -11,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'buying_option_screen.dart';
 import 'buying_option2_screen.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static const routeName = '/home';
@@ -26,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading:
-            false,
+        automaticallyImplyLeading: false,
         flexibleSpace: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 38.0),
               child: Text(
-                'Hello,' + user.displayName! +'!',
+                'Hello,' + user.displayName! + '!',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.white,
@@ -261,7 +259,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed(BuyingOptionScreen.routeName);
+                      Navigator.of(context)
+                          .pushNamed(BuyingOptionScreen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
@@ -360,7 +359,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed(BuyingOption2Screen.routeName);
+                      Navigator.of(context)
+                          .pushNamed(BuyingOption2Screen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
