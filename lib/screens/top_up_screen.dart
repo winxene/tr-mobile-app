@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trmade/screens/profile_screen.dart';
+
 import 'package:trmade/widgets/bottom_nav_bar.dart';
 
-import 'home_screen.dart';
 import 'package:trmade/components/snack_bar.dart';
 
 class TopUpScreen extends StatelessWidget {
@@ -71,7 +68,8 @@ class TopUpScreen extends StatelessWidget {
           ElevatedButton(
             //text button sample (in this case I use Trending button)
             onPressed: () {
-              Clipboard.setData(ClipboardData(text: "$virtualAccountNumber"));      //copy to clipboard
+              Clipboard.setData(ClipboardData(
+                  text: "$virtualAccountNumber")); //copy to clipboard
               showSnackBar(context, 'Copied to clipboard');
             },
             child: Text(

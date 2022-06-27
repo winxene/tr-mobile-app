@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ElevatedButton(
                     onPressed: () {},
                     child: Text(
-                      'Reccomended',
+                      'Recommended',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
