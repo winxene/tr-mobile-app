@@ -14,26 +14,15 @@ class DispenserFirebase {
       "token": " ",
     });
   }
-    void dispenserLogic(String token){
-      DatabaseReference dispenserToken =databaseDispenserReference.child("dispenserData").child(token);
-      dispenserToken.once();
-      if(dispenserToken.key == token ){
-          updateDispenserStatus();
-      }
+
+  void dispenserLogic(String token) {
+    DatabaseReference dispenserToken =
+        databaseDispenserReference.child("dispenserData").child(token);
+    dispenserToken.once();
+    if (dispenserToken.key == token) {
+      updateDispenserStatus();
     }
-
-  // dispenserLogic(String token) async {
-  //   DatabaseEvent readDispenserToken = await databaseDispenserReference
-  //       .child("dispenserData")
-  //       .child('token')
-  //       .once();
-
-  //   final dispenserTokenToken = readDispenserToken.snapshot.value.toString();
-  //   List tokenValue = dispenserTokenToken.split(":");
-  //   if (tokenValue[1] == '"' + token + '"') {
-  //     updateDispenserStatus();
-  //   }
-  // }
+  }
 }
 
 class QRDispenserFirebase extends DispenserFirebase {

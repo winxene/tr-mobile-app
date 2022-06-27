@@ -45,26 +45,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 70,
+                  height: 70,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.black,
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(user.photoURL!),
-                    ),
+                    image: user == Null
+                        ? DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(
+                                'assets/images/default_profile_pic.png'))
+                        : DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(user.photoURL!),
+                          ),
                   ),
                 ),
+                SizedBox(width: 3),
                 Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(right: 0.1),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         user.displayName!,
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -72,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         user.email!,
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 14,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -83,14 +89,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         'Balance',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 16,
                           color: Colors.white,
                         ),
                       ),
                       Text(
                         'Rp 25,000',
                         style: TextStyle(
-                          fontSize: 21,
+                          fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -128,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 30),
           Container(
             padding: EdgeInsets.symmetric(vertical: 5),
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -262,7 +268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Image.asset(
               'assets/images/profile_image.png',
             ),
-            width: 400,
+            // width: 400,
           ),
         ],
       ),

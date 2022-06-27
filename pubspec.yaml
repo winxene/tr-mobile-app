@@ -79,6 +79,7 @@ flutter:
      - assets/images/lemon_soda.png
      - assets/images/payments_image.png
      - assets/images/profile_image.png
+     - assets/images/default_profile_pic.png
 
   #   - images/a_dot_ham.jpeg
 

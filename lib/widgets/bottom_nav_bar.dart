@@ -97,7 +97,7 @@ class _BottomNavBarState extends State<BottomNavBar>{
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: IconButton(
-              icon: Image(
+              icon: user==Null ? Icon(Icons.person):Image(
                 image: NetworkImage(user.photoURL!)),
               iconSize: 40,
               onPressed: () {

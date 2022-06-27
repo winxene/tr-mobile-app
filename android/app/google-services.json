@@ -51,11 +51,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "963701895505-11slvcebustm5qvvnq66o3g2jkickd0t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trmade",
+            "certificate_hash": "8481017ad4142ff7a2a164f676992ecb235c5988"
+          }
+        },
+        {
           "client_id": "963701895505-3rr8sdrk5u0k9pm491rnut0ifjm1ohos.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.trmade",
             "certificate_hash": "3fb7497040fafdbd1d070c25494c19627363e66a"
+          }
+        },
+        {
+          "client_id": "963701895505-o2hu3vdq7h3s8nvg48t2lqlg607ksu4e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trmade",
+            "certificate_hash": "461eacaa345a21bd7cde503de1d40241d8ea4edf"
           }
         },
         {
