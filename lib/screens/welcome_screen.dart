@@ -5,9 +5,9 @@ import 'package:trmade/screens/sign_in_screen.dart';
 import 'package:trmade/screens/sign_up_screen.dart';
 import 'package:trmade/widgets/account_text_button.dart';
 import 'package:trmade/widgets/icon_placement.dart';
-import 'package:trmade/widgets/rounded_buttons/icon_rounded_big_button.dart';
 
-import '../widgets/rounded_buttons/rounded_big_button.dart';
+import 'package:'
+
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -70,23 +70,32 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(
+                      RoundedNavigationButton(
+                        text: 'Sign In',
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed(SignInScreen.routeName);
+                          Navigator.of(context).pushNamed(SignInScreen.routeName);
                         },
-                        child: Text('Sign in'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(0, 191, 166, 1),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 128,
-                            vertical: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
+                        buttonColor: Color.fromRGBO(0, 191, 166, 1),
+                        textColor: Colors.white,
                       ),
+
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     Navigator.of(context)
+                      //         .pushNamed(SignInScreen.routeName);
+                      //   },
+                      //   child: Text('Sign in'),
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: Color.fromRGBO(0, 191, 166, 1),
+                      //     padding: EdgeInsets.symmetric(
+                      //       horizontal: 128,
+                      //       vertical: 10,
+                      //     ),
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(20),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(height: 8),
                       const Text(
                         'or',
