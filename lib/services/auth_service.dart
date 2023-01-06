@@ -17,7 +17,7 @@ class AuthService {
 
   Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
   //Email Sign up
-  Future<void> signUpWithEmail({
+    Future<void> signUpWithEmail({
     required String userEmail,
     required String userPassword,
     required BuildContext context,
@@ -27,15 +27,14 @@ class AuthService {
         email: userEmail,
         password: userPassword,
       );
-      //sending email verification
+      // sending email verification
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
-      showSnackBar(
-          context, e.message!); // Displaying the usual firebase error message
+      showSnackBar(context, e.message!); // Displaying the usual firebase error message
     }
   }
 
-  //Email Login
+  // Email Login
   Future<void> signInWithEmail({
     required String userEmail,
     required String userPassword,
@@ -46,7 +45,8 @@ class AuthService {
         email: userEmail,
         password: userPassword,
       );
-      if (!user.emailVerified) {
+      bool emailVerified = user?.emailVerified ?? false;
+      if (!emailVerified) {
         await sendEmailVerification(context);
         // restrict access to certain things using provider
         // transition to another page instead of home screen
@@ -56,10 +56,10 @@ class AuthService {
     }
   }
 
-  //Email Verification
+  // Email Verification
   Future<void> sendEmailVerification(BuildContext context) async {
     try {
-      _auth.currentUser!.sendEmailVerification();
+      _auth.currentUser?.sendEmailVerification();
       showSnackBar(context, 'Email verification sent!');
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!); // Display error message

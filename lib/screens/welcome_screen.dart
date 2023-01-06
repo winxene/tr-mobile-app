@@ -6,7 +6,7 @@ import 'package:trmade/screens/sign_up_screen.dart';
 import 'package:trmade/widgets/account_text_button.dart';
 import 'package:trmade/widgets/icon_placement.dart';
 
-import 'package:'
+// import 'package:'
 
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasData) {
+            } else if (snapshot.hasData && snapshot.data != null) {
               return HomeScreen();
             } else {
               return Scaffold(
@@ -70,32 +70,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      RoundedNavigationButton(
-                        text: 'Sign In',
+                      ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed(SignInScreen.routeName);
+                          Navigator.of(context)
+                              .pushNamed(SignInScreen.routeName);
                         },
-                        buttonColor: Color.fromRGBO(0, 191, 166, 1),
-                        textColor: Colors.white,
+                        child: Text('Sign in'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromRGBO(0, 191, 166, 1),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 128,
+                            vertical: 10,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
                       ),
-
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     Navigator.of(context)
-                      //         .pushNamed(SignInScreen.routeName);
-                      //   },
-                      //   child: Text('Sign in'),
-                      //   style: ElevatedButton.styleFrom(
-                      //     primary: Color.fromRGBO(0, 191, 166, 1),
-                      //     padding: EdgeInsets.symmetric(
-                      //       horizontal: 128,
-                      //       vertical: 10,
-                      //     ),
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(20),
-                      //     ),
-                      //   ),
-                      // ),
                       SizedBox(height: 8),
                       const Text(
                         'or',
