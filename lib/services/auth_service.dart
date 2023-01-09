@@ -4,11 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../components/snack_bar.dart';
 
-import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/welcome_screen.dart';
-
-import 'package:provider/provider.dart';
-
 class AuthService {
   final FirebaseAuth _auth;
   AuthService(this._auth);
