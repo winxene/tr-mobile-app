@@ -28,9 +28,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           stream: context.read<AuthService>().authState,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData && snapshot.data != null) {
-              return HomeScreen();
+              return const HomeScreen();
             } else {
               return Scaffold(
                 appBar: AppBar(
