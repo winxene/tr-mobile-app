@@ -4,7 +4,7 @@ import 'package:trmade/screens/home_screen.dart';
 import 'package:trmade/screens/payment_screen.dart';
 import 'package:trmade/screens/profile_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:trmade/services/firebase.dart';
+import 'package:trmade/services/dispenser_firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trmade/components/snack_bar.dart';
 
@@ -27,11 +27,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         true,
         ScanMode.QR,
       );
-
       if (!mounted) return;
 
       setState(() {
-        this.qrCodeResult = qrCodeResult;
+        this.qrCodeResult = qrCodeResult;        
         qrDispenserFirebase.dispenser(qrCodeResult);
       });
       if (qrCodeResult == '-1') {
@@ -39,6 +38,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         showSnackBar(context, "QR Scan is canceled");
       } else {
         Navigator.of(context).pushNamed(PaymentScreen.routeName);
+
         showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
       }
     } on PlatformException {
@@ -103,9 +103,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: IconButton(
-              icon: user == Null
-                  ? Icon(Icons.person)
-                  : Image(image: NetworkImage(user.photoURL!)),
+              icon: 
+                user.photoURL == Null
+                ? Icon(Icons.person)
+                : Image(image: NetworkImage(user.photoURL!)),
               iconSize: 40,
               onPressed: () {
                 Navigator.of(context).pushNamed(ProfileScreen.routeName);
