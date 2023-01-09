@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trmade/screens/home_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:trmade/services/firebase.dart';
+import 'package:trmade/services/dispenser_firebase.dart';
 import 'package:flutter/services.dart';
 import '../components/snack_bar.dart';
 
