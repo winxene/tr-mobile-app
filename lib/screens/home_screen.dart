@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/top_up_screen.dart';
 import 'package:trmade/screens/version_information_screen.dart';
-import 'package:trmade/services/balance_service.dart';
 import 'package:trmade/widgets/balance_widget.dart';
 import 'package:trmade/widgets/bottom_nav_bar.dart';
 import '../widgets/my_icons_icons.dart';
@@ -11,19 +10,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'buying_option_screen.dart';
 import 'buying_option2_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static const routeName = '/home';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-    return Scaffold (
+    return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace: SafeArea(
@@ -52,15 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  BalanceWidget()
-                  // Text(
-                  //   'Rp 25,000',
-                  //   style: TextStyle(
-                  //     fontSize: 18,
-                  //     color: Colors.white,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ), 
+                  BalanceWidget(),
                 ],
               )
             ],
