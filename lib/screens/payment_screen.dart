@@ -5,7 +5,6 @@ import 'package:trmade/services/dispenser_service.dart';
 import 'package:flutter/services.dart';
 import '../components/snack_bar.dart';
 
-
 QRDispenserFirebase qrDispenserFirebase = QRDispenserFirebase();
 
 class PaymentScreen extends StatefulWidget {
@@ -17,10 +16,9 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-
   String qrCodeResult = "";
 
-   Future<void> scanQRCode() async {
+  Future<void> scanQRCode() async {
     try {
       final qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',
@@ -32,14 +30,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       setState(() {
         this.qrCodeResult = qrCodeResult;
-        qrDispenserFirebase.dispenser(qrCodeResult);
+        qrDispenserFirebase.dispenser(qrCodeResult, () {
+          Navigator.of(context).pushNamed(PaymentScreen.routeName);
+        });
       });
       if (qrCodeResult == '-1') {
         Navigator.of(context).pushNamed(HomeScreen.routeName);
         showSnackBar(context, "QR Scan is canceled");
       } else {
-        Navigator.of(context).pushNamed(PaymentScreen.routeName);
-        showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
+        showSnackBar(context,
+            "QR Code Scanned, if it does not change screen, please try again");
       }
     } on PlatformException {
       qrCodeResult = 'Failed to get platform version.';
