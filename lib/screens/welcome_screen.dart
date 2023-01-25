@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 
 import 'home_screen.dart';
 
-
 final balanceService = BalanceService();
 
 class WelcomeScreen extends StatefulWidget {
@@ -26,7 +25,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-
   @override
   Widget build(BuildContext context) => Scaffold(
       body: StreamBuilder(
@@ -45,6 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 body: Center(
                   child: Column(
                     children: [
+                      const SizedBox(height: 100),
                       IconPlacement(
                           pictureLocation:
                               'assets/images/bottle_and_fresh.png'),
@@ -74,7 +73,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
                       // ElevatedButton(
                       //   onPressed: () {
                       //     Navigator.of(context)
@@ -102,10 +101,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       // ),
                       // SizedBox(height: 8),
                       ElevatedButton.icon(
-                        onPressed: () async{
-                          await context.read<AuthService>().signInWithGoogle(context);
+                        onPressed: () async {
+                          await context
+                              .read<AuthService>()
+                              .signInWithGoogle(context);
                           if (context.read<AuthService>().user != null) {
-                            await balanceService.getUserInfo(); 
+                            await balanceService.getUserInfo();
                             Navigator.of(context)
                                 .pushNamed(HomeScreen.routeName);
                           }
@@ -139,6 +140,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       //   clickText: 'Go Create One!',
                       //   routeName: SignUpScreen.routeName,
                       // ),
+                      const SizedBox(height: 125),
+                      Text("Powered by:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          )),
+                      Image(
+                          image: AssetImage(
+                              'assets/images/drinkify_logo.png'),
+                          height: 45,
+                          width: 80,
+                              ),
+                      Text("Created by: Vendy, Vincent, Winxen",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          )),
                     ],
                   ),
                 ),
