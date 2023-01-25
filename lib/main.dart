@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trmade/services/balance_service.dart';
 // import 'package:trmade/routes/routes.dart';
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthService>().authState,
           initialData: null,
         ),
+        ChangeNotifierProvider(create: (context)=> BalanceService())
       ],
       child: MaterialApp(
           theme: ThemeData(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:trmade/screens/sign_in_screen.dart';
-import 'package:trmade/screens/sign_up_screen.dart';
-import 'package:trmade/widgets/account_text_button.dart';
-import 'package:trmade/widgets/icon_placement.dart';
+import '../screens/sign_in_screen.dart';
+import '../screens/sign_up_screen.dart';
+import '../widgets/account_text_button.dart';
+import '../widgets/icon_placement.dart';
+import '../services/balance_service.dart';
 
 // import 'package:'
 
@@ -22,6 +23,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: StreamBuilder(
@@ -70,36 +72,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed(SignInScreen.routeName);
-                        },
-                        child: Text('Sign in'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(0, 191, 166, 1),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 128,
-                            vertical: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      const Text(
-                        'or',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                      SizedBox(height: 8),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     Navigator.of(context)
+                      //         .pushNamed(SignInScreen.routeName);
+                      //   },
+                      //   child: Text('Sign in'),
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: Color.fromRGBO(0, 191, 166, 1),
+                      //     padding: EdgeInsets.symmetric(
+                      //       horizontal: 128,
+                      //       vertical: 10,
+                      //     ),
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(20),
+                      //     ),
+                      //   ),
+                      // ),
+                      // SizedBox(height: 8),
+                      // const Text(
+                      //   'or',
+                      //   style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontSize: 14,
+                      //   ),
+                      // ),
+                      // SizedBox(height: 8),
                       ElevatedButton.icon(
                         onPressed: () {
                           context.read<AuthService>().signInWithGoogle(context);
                           if (context.read<AuthService>().user != null) {
+                            BalanceService().getBalance(); 
                             Navigator.of(context)
                                 .pushNamed(HomeScreen.routeName);
                           }
@@ -127,12 +130,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 8),
-                      AccountTextButton(
-                        text: 'Don’t have account?',
-                        clickText: 'Go Create One!',
-                        routeName: SignUpScreen.routeName,
-                      ),
+                      // SizedBox(height: 8),
+                      // AccountTextButton(
+                      //   text: 'Don’t have account?',
+                      //   clickText: 'Go Create One!',
+                      //   routeName: SignUpScreen.routeName,
+                      // ),
                     ],
                   ),
                 ),
