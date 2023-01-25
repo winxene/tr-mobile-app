@@ -24,7 +24,6 @@ import '../screens/buying_option2_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await BalanceService().getUserInfo();
   runApp(
     ChangeNotifierProvider.value(
       value: BalanceService(),
