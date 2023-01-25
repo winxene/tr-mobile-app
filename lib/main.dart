@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trmade/screens/buying_option3_screen.dart';
 import 'package:trmade/services/balance_service.dart';
 // import 'package:trmade/routes/routes.dart';
 import '../services/auth_service.dart';
@@ -7,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:trmade/services/auth_service.dart';
 // ...
 import '../screens/home_screen.dart';
 import '../screens/sign_in_screen.dart';
@@ -24,7 +24,13 @@ import 'package:trmade/screens/buying_option2_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  await BalanceService().getUserInfo();
+  runApp(
+    ChangeNotifierProvider.value(value:
+      BalanceService(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,7 +45,7 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthService>().authState,
           initialData: null,
         ),
-        ChangeNotifierProvider(create: (context)=> BalanceService())
+        ChangeNotifierProvider(create: (context) => BalanceService())
       ],
       child: MaterialApp(
           theme: ThemeData(
@@ -77,6 +83,8 @@ class MyApp extends StatelessWidget {
                 const BuyingOptionScreen(),
             BuyingOption2Screen.routeName: (context) =>
                 const BuyingOption2Screen(),
+            BuyingOption3Screen.routeName: (context) =>
+                const BuyingOption3Screen(),
           }),
     );
   }

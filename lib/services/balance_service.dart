@@ -22,7 +22,7 @@ class BalanceService extends ChangeNotifier {
   }
 
   Future<void> addBalance(
-      int amount, String tokenEntered) async {
+      int amount, String tokenEntered, Function callback) async {
     await topUpRef.child("5k").once().then((event) async {
       var snapshot = event.snapshot;
       if (snapshot.value != null) {
@@ -35,12 +35,13 @@ class BalanceService extends ChangeNotifier {
           notifyListeners();
           topUpRef.update({"refresh": true});
           await getBalance();
+          callback();
         }
       }
     });
   }
 
-  Future<void> deductBalance(int amount) async{
+  Future<void> deductBalance(int amount, Function callback) async{
     await getBalance();
     if(_balance>=amount){
       _balance -= amount;
@@ -48,6 +49,7 @@ class BalanceService extends ChangeNotifier {
       ref.update({userID: _balance});
       notifyListeners();
       await getBalance();
+      callback();
     }
   }
 

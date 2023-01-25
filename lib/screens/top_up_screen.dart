@@ -42,9 +42,9 @@ class _TopUpScreenState extends State<TopUpScreen> {
 
       setState(() async {
         this.qrCodeResult = qrCodeResult;
-        await BalanceService().addBalance(5000, qrCodeResult);
-        await BalanceService().getBalance();
-        showSnackBar(context, "Top up successful");
+        await BalanceService().addBalance(5000, qrCodeResult,() {
+          showSnackBar(context, "Top up successful, press the balance button to refresh");
+        });
       });
       if (qrCodeResult == '-1') {
         Navigator.of(context).pushNamed(TopUpScreen.routeName);
@@ -183,7 +183,9 @@ class _TopUpScreenState extends State<TopUpScreen> {
                 onPressed: () async {
                   String tokenEntered = tokenEnteredController.text;
                   await BalanceService()
-                      .addBalance(5000, tokenEntered);
+                      .addBalance(5000, tokenEntered, () {
+                        showSnackBar(context, "Top up successful");
+                      });
                   await BalanceService().getBalance();
                 },
                 child: Text(

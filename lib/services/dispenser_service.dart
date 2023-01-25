@@ -15,21 +15,21 @@ class DispenserFirebase {
     });
   }
 
-  Future <void> dispenserLogic(String token) async {
+  Future <void> dispenserLogic(String token, Function callback) async {
     var ref = databaseDispenserReference.child("dispenserData").child("token");
     await ref.once().then((DatabaseEvent event) {
       var snapshot= event.snapshot;
       var dispenserToken = snapshot.value;
       if (dispenserToken == token) {
         updateDispenserStatus();
-        BalanceService().deductBalance(5000);
+        BalanceService().deductBalance(5000, callback);
       }
     });
   }
 }
 
 class QRDispenserFirebase extends DispenserFirebase {
-  dispenser(String token) {
-    super.dispenserLogic(token);  
+  dispenser(String token, Function callback) {
+    super.dispenserLogic(token, callback);  
   }
 }
