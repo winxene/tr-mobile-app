@@ -4,10 +4,10 @@ import 'package:trmade/screens/home_screen.dart';
 import 'package:trmade/screens/payment_screen.dart';
 import 'package:trmade/screens/profile_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:trmade/services/dispenser_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trmade/components/snack_bar.dart';
-
+import '../services/balance_service.dart';
+import '../services/dispenser_service.dart';
 QRDispenserFirebase qrDispenserFirebase = QRDispenserFirebase();
 
 class BottomNavBar extends StatefulWidget {
@@ -30,7 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       if (!mounted) return;
 
       setState(() {
-        this.qrCodeResult = qrCodeResult;        
+        this.qrCodeResult = qrCodeResult;
         qrDispenserFirebase.dispenser(qrCodeResult);
       });
       if (qrCodeResult == '-1') {
@@ -38,7 +38,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         showSnackBar(context, "QR Scan is canceled");
       } else {
         Navigator.of(context).pushNamed(PaymentScreen.routeName);
-
         showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
       }
     } on PlatformException {
@@ -58,7 +57,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             bottom: 15,
           ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.home,
               size: 40,
               color: Colors.white,
@@ -73,7 +72,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             bottom: 15,
           ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               size: 40,
               color: Colors.white,
@@ -86,7 +85,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             bottom: 15,
           ), //add padding to the bottom of the icon therefore there is a space between the icon and the bottom of the screen
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.qr_code_scanner_outlined,
               size: 40,
               color: Colors.white,
@@ -105,7 +104,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             child: IconButton(
               icon: 
                 user.photoURL == Null
-                ? Icon(Icons.person)
+                ? const Icon(Icons.person)
                 : Image(image: NetworkImage(user.photoURL!)),
               iconSize: 40,
               onPressed: () {

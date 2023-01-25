@@ -20,7 +20,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   String qrCodeResult = "";
 
-  Future<void> scanQRCode() async {
+   Future<void> scanQRCode() async {
     try {
       final qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',
@@ -28,15 +28,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
         true,
         ScanMode.QR,
       );
-
       if (!mounted) return;
 
       setState(() {
         this.qrCodeResult = qrCodeResult;
         qrDispenserFirebase.dispenser(qrCodeResult);
-        showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
-        // Firebase.updateDispenserStatus();
       });
+      if (qrCodeResult == '-1') {
+        Navigator.of(context).pushNamed(HomeScreen.routeName);
+        showSnackBar(context, "QR Scan is canceled");
+      } else {
+        Navigator.of(context).pushNamed(PaymentScreen.routeName);
+        showSnackBar(context, "QR Code Scanned, Token: $qrCodeResult");
+      }
     } on PlatformException {
       qrCodeResult = 'Failed to get platform version.';
     }

@@ -1,4 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/services/balance_service.dart';
 
 final DatabaseReference databaseDispenserReference =
     FirebaseDatabase.instance.ref("D-1");
@@ -20,6 +22,7 @@ class DispenserFirebase {
       var dispenserToken = snapshot.value;
       if (dispenserToken == token) {
         updateDispenserStatus();
+        BalanceService().deductBalance(5000);
       }
     });
   }
