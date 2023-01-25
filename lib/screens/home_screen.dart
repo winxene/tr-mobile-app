@@ -9,6 +9,7 @@ import '../widgets/my_icons_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'buying_option_screen.dart';
 import 'buying_option2_screen.dart';
+import 'buying_option3_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -187,14 +188,14 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Container(
                     child: Image.asset(
-                      'assets/images/tea.png',
+                      'assets/images/matcha_latte.png',
                     ),
                     height: 120,
                     padding: EdgeInsets.only(left: 20),
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 10),
-                    height: 125,
+                    height: 120,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,16 +204,16 @@ class HomeScreen extends StatelessWidget {
                           width:
                               160, //limit the width of the text to make two line of text
                           child: Text(
-                            "Drinkify's Classic Hot Tea",
+                            "Limited Offer: Drinkify's Matcha Latte",
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 15,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Text(
-                          'Small cup (250 ml)',
+                          'Small cup (150 ml)',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 11,
@@ -220,7 +221,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Tea',
+                          'Coffee',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 11,
@@ -234,7 +235,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Rp 12,000',
+                          'Rp 5,000',
                           style: TextStyle(
                             color: Color.fromRGBO(0, 191, 166, 1),
                             fontSize: 15,
@@ -247,7 +248,7 @@ class HomeScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context)
-                          .pushNamed(BuyingOptionScreen.routeName);
+                          .pushNamed(BuyingOption3Screen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
@@ -273,6 +274,105 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Container(
+            //   padding: EdgeInsets.symmetric(vertical: 20),
+            //   margin: EdgeInsets.symmetric(horizontal: 15),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(30),
+            //     color: Colors.white,
+            //   ),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Container(
+            //         child: Image.asset(
+            //           'assets/images/tea.png',
+            //         ),
+            //         height: 120,
+            //         padding: EdgeInsets.only(left: 20),
+            //       ),
+            //       Container(
+            //         padding: EdgeInsets.only(left: 10),
+            //         height: 125,
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               width:
+            //                   160, //limit the width of the text to make two line of text
+            //               child: Text(
+            //                 "Drinkify's Classic Hot Tea",
+            //                 style: TextStyle(
+            //                   color: Colors.black,
+            //                   fontSize: 15,
+            //                   fontWeight: FontWeight.bold,
+            //                 ),
+            //               ),
+            //             ),
+            //             Text(
+            //               'Small cup (250 ml)',
+            //               style: TextStyle(
+            //                 color: Colors.black,
+            //                 fontSize: 11,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //             Text(
+            //               'Tea',
+            //               style: TextStyle(
+            //                 color: Colors.black,
+            //                 fontSize: 11,
+            //               ),
+            //             ),
+            //             Text(
+            //               'Starts from',
+            //               style: TextStyle(
+            //                 color: Colors.black,
+            //                 fontSize: 11,
+            //               ),
+            //             ),
+            //             Text(
+            //               'Rp 12,000',
+            //               style: TextStyle(
+            //                 color: Color.fromRGBO(0, 191, 166, 1),
+            //                 fontSize: 15,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       GestureDetector(
+            //         onTap: () {
+            //           Navigator.of(context)
+            //               .pushNamed(BuyingOptionScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding: EdgeInsets.only(right: 20),
+            //           child: Column(
+            //             children: [
+            //               SizedBox(
+            //                 height: 80,
+            //               ),
+            //               CircleAvatar(
+            //                 //next button
+            //                 child: Icon(
+            //                   Icons.navigate_next,
+            //                   size: 40,
+            //                 ),
+            //                 radius: 20,
+            //                 backgroundColor: Color.fromRGBO(0, 191, 166, 1),
+            //                 foregroundColor: Colors.white,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(height: 20),
             //menu information 2
             Container(
@@ -346,8 +446,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context)
-                          .pushNamed(BuyingOption2Screen.routeName);
+                      // Navigator.of(context)
+                      //     .pushNamed(BuyingOption2Screen.routeName);
                     },
                     child: Container(
                       padding: EdgeInsets.only(right: 20),
