@@ -4,7 +4,7 @@ import 'package:trmade/screens/home_screen.dart';
 import 'package:trmade/screens/payment_screen.dart';
 import 'package:trmade/screens/profile_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:trmade/services/dispenser_firebase.dart';
+import 'package:trmade/services/dispenser_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trmade/components/snack_bar.dart';
 

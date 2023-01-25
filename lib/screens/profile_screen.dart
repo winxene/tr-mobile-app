@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:trmade/services/auth_service.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/widgets/balance_widget.dart';
 import 'package:trmade/widgets/bottom_nav_bar.dart';
-import '../services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -93,14 +93,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      Text(
-                        'Rp 25,000',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // Text(
+                      //   'Rp 25,000',
+                      //   style: TextStyle(
+                      //     fontSize: 18,
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      BalanceWidget()
                     ],
                   ),
                 ),

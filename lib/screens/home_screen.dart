@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/profile_screen.dart';
 import 'package:trmade/screens/support_screen.dart';
 import 'package:trmade/screens/top_up_screen.dart';
 import 'package:trmade/screens/version_information_screen.dart';
+import 'package:trmade/services/balance_service.dart';
+import 'package:trmade/widgets/balance_widget.dart';
 import 'package:trmade/widgets/bottom_nav_bar.dart';
 import '../widgets/my_icons_icons.dart';
-import '../models/account_information.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'buying_option_screen.dart';
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-    return Scaffold(
+    return Scaffold (
       appBar: AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace: SafeArea(
@@ -52,14 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  Text(
-                    'Rp 25,000',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  BalanceWidget()
+                  // Text(
+                  //   'Rp 25,000',
+                  //   style: TextStyle(
+                  //     fontSize: 18,
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ), 
                 ],
               )
             ],
