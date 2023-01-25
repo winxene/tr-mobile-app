@@ -16,10 +16,7 @@ class TopUpScreen extends StatefulWidget {
 }
 
 class _TopUpScreenState extends State<TopUpScreen> {
-  String virtualAccountNumber = '0000-xxxx-2736-yyyy-8882-6633';
-
   String drinkifyURL = 'https://drinkify-website.vercel.app/';
-
   String qrCodeResult = "";
 
   final tokenEnteredController = TextEditingController();
@@ -45,7 +42,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
 
       setState(() async {
         this.qrCodeResult = qrCodeResult;
-        await BalanceService().updateBalance(5000, true, qrCodeResult);
+        await BalanceService().addBalance(5000, qrCodeResult);
         await BalanceService().getBalance();
         showSnackBar(context, "Top up successful");
       });
@@ -81,10 +78,10 @@ class _TopUpScreenState extends State<TopUpScreen> {
             child: Image.asset(
               'assets/images/top-up_image.png',
             ),
-            width: 250,
+            width: 200,
           ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Balance',
@@ -169,9 +166,6 @@ class _TopUpScreenState extends State<TopUpScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
           Container(
             child: Text(
               'or press the scanQRCode button',
@@ -183,12 +177,13 @@ class _TopUpScreenState extends State<TopUpScreen> {
           ),
           //button for submit
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () async {
                   String tokenEntered = tokenEnteredController.text;
                   await BalanceService()
-                      .updateBalance(5000, true, tokenEntered);
+                      .addBalance(5000, tokenEntered);
                   await BalanceService().getBalance();
                 },
                 child: Text(
@@ -218,7 +213,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
               IconButton(
                 onPressed: () => tokenQRCode(),
                 icon: Icon(Icons.qr_code_scanner_outlined,
-                    size: 10, color: Colors.white),
+                    size: 30, color: Colors.white),
               )
             ],
           ),
