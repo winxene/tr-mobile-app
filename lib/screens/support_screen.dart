@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/profile_screen.dart';
-import 'package:trmade/widgets/bottom_nav_bar.dart';
+import '../screens/profile_screen.dart';
+import '../widgets/bottom_nav_bar.dart';
 
 import 'home_screen.dart';
 

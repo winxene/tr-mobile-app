@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/sign_in_screen.dart';
-import 'package:trmade/screens/welcome_screen.dart';
-import 'package:trmade/widgets/account_text_button.dart';
+import '../screens/sign_in_screen.dart';
+import '../screens/welcome_screen.dart';
+import '../widgets/account_text_button.dart';
 
 import 'home_screen.dart';
 
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
-
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -27,11 +26,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isPasswordConfInvisible = true;
 
   @override
-  void signUpUser(){
-    context.read<AuthService>().signUpWithEmail(userEmail: 
-    emailController.text, 
-    userPassword: passwordController.text, 
-    context: context);
+  void signUpUser() {
+    context.read<AuthService>().signUpWithEmail(
+        userEmail: emailController.text,
+        userPassword: passwordController.text,
+        context: context);
     Navigator.of(context).pushNamed(WelcomeScreen.routeName);
   }
 
@@ -147,19 +146,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // print('Password Confirmation: ${passwordConfController.text}');
                 setState(() {
                   //check if the password value meet the requirement which is at least 8 characters long
-                  if (passwordController.text.length < 8){
-                      passwordError = "Password must be at least 8 characters";
-                    }
-                  else{
+                  if (passwordController.text.length < 8) {
+                    passwordError = "Password must be at least 8 characters";
+                  } else {
                     passwordError = "";
                   }
-                  if (passwordConfController.text != passwordController.text){
+                  if (passwordConfController.text != passwordController.text) {
                     passwordConfError = "Password confirmation does not match";
-                  }
-                  else{
+                  } else {
                     passwordConfError = "";
                   }
-                  if (passwordController.text.length >= 8 && passwordConfController.text == passwordController.text){
+                  if (passwordController.text.length >= 8 &&
+                      passwordConfController.text == passwordController.text) {
                     signUpUser();
                   }
                 });
@@ -177,10 +175,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             AccountTextButton(
-              text: 'Have Account?', 
-              clickText: 'Go Login!', 
-              routeName: SignInScreen.routeName
-            ),
+                text: 'Have Account?',
+                clickText: 'Go Login!',
+                routeName: SignInScreen.routeName),
           ],
         ),
       ),
@@ -212,8 +209,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         keyboardType: TextInputType.emailAddress,
       );
-
-  
 
   Widget buildPassword() => TextField(
         style: TextStyle(

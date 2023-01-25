@@ -1,4 +1,4 @@
-name: trmade
+name: drinkify
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -114,7 +114,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/drinkify_logo_apk.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
+  min_sdk_android: 33 # android min sdk min:16, default 21
   web:
     generate: true
     image_path: "assets/images/drinkify_logo_apk.png"

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:trmade/services/auth_service.dart';
-import 'package:trmade/screens/support_screen.dart';
-import 'package:trmade/screens/welcome_screen.dart';
-import 'package:trmade/widgets/balance_widget.dart';
-import 'package:trmade/widgets/bottom_nav_bar.dart';
+import '../services/auth_service.dart';
+import '../screens/support_screen.dart';
+import '../screens/welcome_screen.dart';
+import '../widgets/balance_widget.dart';
+import '../widgets/bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {

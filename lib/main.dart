@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trmade/screens/buying_option3_screen.dart';
-import 'package:trmade/services/balance_service.dart';
-// import 'package:trmade/routes/routes.dart';
+import '../screens/buying_option3_screen.dart';
+import '../services/balance_service.dart';
+// import '../routes/routes.dart';
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,16 +18,16 @@ import '../screens/payment_screen.dart';
 import '../screens/support_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/version_information_screen.dart';
-import 'package:trmade/screens/buying_option_screen.dart';
-import 'package:trmade/screens/buying_option2_screen.dart';
+import '../screens/buying_option_screen.dart';
+import '../screens/buying_option2_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await BalanceService().getUserInfo();
   runApp(
-    ChangeNotifierProvider.value(value:
-      BalanceService(),
+    ChangeNotifierProvider.value(
+      value: BalanceService(),
       child: MyApp(),
     ),
   );

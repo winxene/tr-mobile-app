@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/support_screen.dart';
-import 'package:trmade/screens/top_up_screen.dart';
-import 'package:trmade/screens/version_information_screen.dart';
-import 'package:trmade/widgets/balance_widget.dart';
-import 'package:trmade/widgets/bottom_nav_bar.dart';
+import '../screens/support_screen.dart';
+import '../screens/top_up_screen.dart';
+import '../screens/version_information_screen.dart';
+import '../widgets/balance_widget.dart';
+import '../widgets/bottom_nav_bar.dart';
 import '../widgets/my_icons_icons.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';

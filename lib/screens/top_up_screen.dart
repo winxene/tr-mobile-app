@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:trmade/services/balance_service.dart';
-import 'package:trmade/widgets/balance_widget.dart';
+import '../services/balance_service.dart';
+import '../widgets/balance_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:trmade/widgets/bottom_nav_bar.dart';
+import '../widgets/bottom_nav_bar.dart';
 
-import 'package:trmade/components/snack_bar.dart';
+import '../components/snack_bar.dart';
 
 class TopUpScreen extends StatefulWidget {
   static const routeName = '/top_up';
@@ -42,8 +42,9 @@ class _TopUpScreenState extends State<TopUpScreen> {
 
       setState(() async {
         this.qrCodeResult = qrCodeResult;
-        await BalanceService().addBalance(5000, qrCodeResult,() {
-          showSnackBar(context, "Top up successful, press the balance button to refresh");
+        await BalanceService().addBalance(5000, qrCodeResult, () {
+          showSnackBar(context,
+              "Top up successful, press the balance button to refresh");
         });
       });
       if (qrCodeResult == '-1') {
@@ -182,10 +183,9 @@ class _TopUpScreenState extends State<TopUpScreen> {
               ElevatedButton(
                 onPressed: () async {
                   String tokenEntered = tokenEnteredController.text;
-                  await BalanceService()
-                      .addBalance(5000, tokenEntered, () {
-                        showSnackBar(context, "Top up successful");
-                      });
+                  await BalanceService().addBalance(5000, tokenEntered, () {
+                    showSnackBar(context, "Top up successful");
+                  });
                   await BalanceService().getBalance();
                 },
                 child: Text(

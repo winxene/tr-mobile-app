@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/payment_screen.dart';
-import 'package:trmade/screens/profile_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/payment_screen.dart';
+import '../screens/profile_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:trmade/components/snack_bar.dart';
+import '../components/snack_bar.dart';
 import '../services/dispenser_service.dart';
+
 QRDispenserFirebase qrDispenserFirebase = QRDispenserFirebase();
 
 class BottomNavBar extends StatefulWidget {
@@ -101,10 +102,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: IconButton(
-              icon: 
-                user.photoURL == Null
-                ? const Icon(Icons.person)
-                : Image(image: NetworkImage(user.photoURL!)),
+              icon: user.photoURL == Null
+                  ? const Icon(Icons.person)
+                  : Image(image: NetworkImage(user.photoURL!)),
               iconSize: 40,
               onPressed: () {
                 Navigator.of(context).pushNamed(ProfileScreen.routeName);

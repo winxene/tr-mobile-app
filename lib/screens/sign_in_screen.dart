@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:trmade/screens/home_screen.dart';
-import 'package:trmade/screens/sign_up_screen.dart';
-import 'package:trmade/screens/welcome_screen.dart';
-import 'package:trmade/widgets/icon_placement.dart';
+import '../screens/home_screen.dart';
+import '../screens/sign_up_screen.dart';
+import '../screens/welcome_screen.dart';
+import '../widgets/icon_placement.dart';
 
 import '../services/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -33,16 +33,15 @@ class _SignInScreenState extends State<SignInScreen> {
   bool isPasswordInvisible = true;
 
   @override
-  void signInUser(){
+  void signInUser() {
     context.read<AuthService>().signInWithEmail(
-      userEmail: emailController.text, 
-      userPassword: passwordController.text, 
-      context: context);
-    if(context.read<AuthService>().user != null){
+        userEmail: emailController.text,
+        userPassword: passwordController.text,
+        context: context);
+    if (context.read<AuthService>().user != null) {
       Navigator.of(context).pushNamed(HomeScreen.routeName);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,8 @@ class _SignInScreenState extends State<SignInScreen> {
         //to make the screen scrollable when the keyboard is open (there is not enough space to display the textfield)
         child: Column(
           children: [
-            IconPlacement(pictureLocation: 'assets/images/bottle_and_fresh.png'),
+            IconPlacement(
+                pictureLocation: 'assets/images/bottle_and_fresh.png'),
             // SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(
@@ -137,9 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   else
                     passwordError = "";
 
-                  if (passwordController.text.length >= 8)
-                    signInUser();
-                  
+                  if (passwordController.text.length >= 8) signInUser();
                 });
               },
               child: Text('Sign in'),
