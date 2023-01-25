@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'home_screen.dart';
 
 class VersionInformationScreen extends StatelessWidget {
   const VersionInformationScreen({Key? key}) : super(key: key);
   static const routeName = '/version_information';
-
   @override
   Widget build(BuildContext context) {
+    String url = 'https://github.com/winxene/tr-iot';
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:
@@ -57,7 +58,7 @@ class VersionInformationScreen extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  '0.0.0.035 (Alpha)',
+                  '0.0.0.04 (Beta)',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.white,
@@ -111,9 +112,14 @@ class VersionInformationScreen extends StatelessWidget {
             ),
             ElevatedButton(
               //text button sample (in this case I use Trending button)
-              onPressed: () {},
+              onPressed: () async{
+                if(await canLaunchUrlString(url))
+                  await launchUrlString(url);
+                else
+                  throw('Could not launch $url');
+              },
               child: Text(
-                'Click me',
+                'Source Code',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
