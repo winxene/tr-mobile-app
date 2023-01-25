@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:trmade/screens/welcome_screen.dart';
+import 'package:trmade/services/balance_service.dart';
 import '../components/snack_bar.dart';
 
 class AuthService {
@@ -12,7 +14,7 @@ class AuthService {
 
   Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
   //Email Sign up
-    Future<void> signUpWithEmail({
+  Future<void> signUpWithEmail({
     required String userEmail,
     required String userPassword,
     required BuildContext context,
@@ -99,6 +101,7 @@ class AuthService {
       //Sign out from google
       GoogleSignIn().signOut();
       showSnackBar(context, "Account has been signed out");
+      balanceService.balance = 0;
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!); // Displaying the error message
     }

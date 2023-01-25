@@ -14,6 +14,9 @@ import 'package:provider/provider.dart';
 
 import 'home_screen.dart';
 
+
+final balanceService = BalanceService();
+
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
   static const routeName = '/welcome';
@@ -99,10 +102,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       // ),
                       // SizedBox(height: 8),
                       ElevatedButton.icon(
-                        onPressed: () {
-                          context.read<AuthService>().signInWithGoogle(context);
+                        onPressed: () async{
+                          await context.read<AuthService>().signInWithGoogle(context);
                           if (context.read<AuthService>().user != null) {
-                            BalanceService().getBalance(); 
+                            await balanceService.getUserInfo(); 
                             Navigator.of(context)
                                 .pushNamed(HomeScreen.routeName);
                           }

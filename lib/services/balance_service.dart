@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -5,16 +7,12 @@ import 'package:flutter/material.dart';
 import 'auth_service.dart';
 
 // Get the currently logged-in user
-// var user = FirebaseAuth.instance.currentUser;
 // Get the email address of the logged-in user
-// var userID = user?.uid; 
-String userID = AuthService(FirebaseAuth.instance).user.uid;
 // Look up the balance for the user in the database
-var ref = FirebaseDatabase.instance.ref().child('users');
+DatabaseReference ref = FirebaseDatabase.instance.ref("users");
 
 class BalanceService extends ChangeNotifier{
   int _balance = 0;
-  // Stream<Event> _balanceStream;
   int get balance => _balance;
 
   set balance(int newBalance){
@@ -23,39 +21,44 @@ class BalanceService extends ChangeNotifier{
   }
 
   Future <void> updateBalance(int amount, bool isAdd) async{
+    String userID = AuthService(FirebaseAuth.instance).user.uid;
     isAdd? _balance +=amount : _balance -= amount;
-    await ref.update({userID!:_balance});
+    await ref.set({userID:_balance});
     notifyListeners();
   }
 
   Future <void> getBalance() async{
-    await ref.child(userID!).once().then((event) {
+    String userID = AuthService(FirebaseAuth.instance).user.uid;
+    await ref.child(userID).once().then((event) {
       var snapshot = event.snapshot;
-      var _balance = snapshot.value;
+      if(snapshot.value != null){
+      _balance = snapshot.value as int;
+      print(_balance);
       notifyListeners();
+      }
     });
   }
 
   Future <void> getUserInfo() async {
+    String userID = AuthService(FirebaseAuth.instance).user.uid;
     bool sameUserFound = false;
-    await ref.get().then((snapshot) =>
-    {
-      for(final userIDs in snapshot.children){
-        userID == userIDs ?
-          sameUserFound = true:false
-      },
-      if (!sameUserFound){
-        _balance = 0,
-        ref.push().set(
-          {
-            userID!: _balance
-          })
-      } 
-      else{
-        getBalance()
+    await ref.get().then((snapshot) {
+      for(final userIDs in snapshot.children) {
+        if (userID == userIDs.key) {
+          sameUserFound = true;
+          break;
+        }
       }
-  });
-  notifyListeners();
+      if (!sameUserFound) {
+        _balance = 0;
+        ref.child(userID).set(_balance);
+        notifyListeners();
+      } else {
+        // _balance = snapshot.value[userID] as int;
+        getBalance();
+        notifyListeners();
+      }
+    });
   }
 }
 
